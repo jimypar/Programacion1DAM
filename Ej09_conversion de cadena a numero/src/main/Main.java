@@ -28,18 +28,27 @@ public class Main {
 		String cadena= "123";
 		int numero;
 		numero=Integer.parseInt(cadena);
-		
+		System.out.println("numero: "+numero);
+				
 		int numeroByte;
 		numeroByte=Byte.parseByte(cadena);
-		
+		System.out.println("numero: "+numeroByte);
+	
+				
 		short numeroShort;
 		numeroShort=Short.parseShort(cadena);
+		System.out.println("numero: "+numeroShort);
+		
 
 		double numeroDouble;
 		numeroDouble=Double.parseDouble(cadena);
+		System.out.println("numero: "+numeroDouble);
+		
 		
 		float numeroFloat;
 		numeroFloat=Float.parseFloat(cadena);
+		System.out.println("numero: "+numeroFloat);
+		
 		
 		
 		/*
@@ -51,6 +60,7 @@ public class Main {
 		// usando el operador +
 		System.out.println("Valor del byte " + unByte);
 		unString=unByte + "";
+		System.out.println("String: "+unString );
 		
 	}
 
