@@ -23,7 +23,6 @@ public class Main {
 		maxTotal=Math.max(Math.max(num1, num2), (Math.max(num3, num4)))
 				;
 		//maxTotal= Math.max(maxEntre1y2, nota3);
-		
 		System.out.println("Numero 1 = " + num1);
 		System.out.println("Numero 2 = " + num2);
 		System.out.println("Numero 3 = " + num3);
