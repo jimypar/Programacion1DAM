@@ -28,7 +28,7 @@ public class Main {
 		System.out.println("Numero 2 = " + num2);
 		System.out.println("Numero 3 = " + num3);
 		System.out.println("Numero 4 = " + num4);
-		System.out.println("Nota máxima = "+ maxTotal);
+		System.out.println("Numero máximo = "+ maxTotal);
 		}
 		finally {
 			

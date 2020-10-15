@@ -16,11 +16,14 @@ public class Main {
 		
 		// Tipos enteros
 		byte unByte=70;
+		System.out.println("byte= "+unByte);
 		short unShort=30000;
+		System.out.println("Short= "+unShort);
 		int unInt= 300000;
+		System.out.println("Int= " +unInt);
 		long unLong= 3000000;
+		System.out.println("Long= " + unLong);
 	
-		System.out.println("Tipo byte = " + unByte);
 		
 		//Tipos decimales
 		/*
@@ -35,7 +38,9 @@ public class Main {
 		
 		float unFloat;
 		unFloat=5.3f;
+		System.out.println("Float= " +unFloat);
 		double unDecimal=5.3666699;
+		System.out.println("Decimal= "+unDecimal);
 		
 		
 		//Tipo booleano : solo almacena true/false

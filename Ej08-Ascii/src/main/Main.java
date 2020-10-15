@@ -1,7 +1,5 @@
 package main;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.CharacterAction;
-
 public class Main {
 
 	public static void main(String[] args) {
