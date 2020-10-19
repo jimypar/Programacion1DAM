@@ -6,18 +6,21 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		
+		
 		try {
-		System.out.println("Introduce cuatro numeros:");
 		Scanner scan1 = new Scanner(System.in) ;
-		Scanner scan2 = new Scanner(System.in) ;
-		Scanner scan3 = new Scanner(System.in) ;
-		Scanner scan4 = new Scanner(System.in) ;
+
 		try {
 			
+		System.out.println("Introduce un numero: ");	
 		int num1= scan1.nextInt();
-		int num2= scan2.nextInt();
-		int num3= scan3.nextInt();
-		int num4= scan4.nextInt();
+		System.out.println("Introduce un numero: ");	
+		int num2= scan1.nextInt();
+		System.out.println("Introduce un numero: ");	
+		int num3= scan1.nextInt();
+		System.out.println("Introduce un numero: ");	
+		int num4= scan1.nextInt();
 		int maxTotal;
 		
 		maxTotal=Math.max(Math.max(num1, num2), (Math.max(num3, num4)))
@@ -32,12 +35,9 @@ public class Main {
 		finally {
 			
 			scan1.close();
-			scan2.close();
-			scan3.close();
-			scan4.close();
 		}
 		} catch (Exception e) {
-		      System.out.println("Introduce solo numeros.");
+		      System.out.println("Introduce solo numeros enteros.");
 		
 		}
 	}
