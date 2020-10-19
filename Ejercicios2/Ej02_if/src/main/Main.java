@@ -21,6 +21,8 @@ public class Main {
 						 
 					}
 					
+					else {
+					
 					if (num1==0) {
 						
 						System.out.println("El numero es 0");
@@ -32,7 +34,7 @@ public class Main {
 						System.out.println(num1+" : Es negativo");
 				
 					}
-					
+					}
 			}
 			finally {
 				

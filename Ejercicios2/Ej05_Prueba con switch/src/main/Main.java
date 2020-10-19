@@ -20,7 +20,7 @@ try {
 				
 				int num1 = scan1.nextInt();
 			
-					switch (num1);
+					switch (num1) {
 				
 						case 1:
 						System.out.println("Bienvenido a Procesador de textos ");
@@ -38,10 +38,8 @@ try {
 						System.out.println("Bienvenido a Presentación con diapositivas");
 						break;		
 					
-						else (num1>4 && num1<1)  {
-				
+						default: 				
 						System.out.println("Introduce un numero comprendido entre 1 y 4");
-				
 					}
 					
 			}

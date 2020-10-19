@@ -26,26 +26,39 @@ try {
 						 
 					}
 					
-					if (num1==2) {
-						
-						System.out.println("Bienvenido a Hoja de cálculo");
-						
-					}
+					else {
 					
-					if (num1==3) {
+						if (num1==2) {
 						
-						System.out.println("Bienvenido a Base de datos");
+							System.out.println("Bienvenido a Hoja de cálculo");
 						
-					}
+							}
+						
+						}
 					
-					if (num1==4) {
-						
-						System.out.println("Bienvenido a Presentación con diapositivas");
-						
-					}
+						else {
 					
 					
-					if (num1>4 && num1<1)  {
+								if (num1==3) {
+						
+									System.out.println("Bienvenido a Base de datos");
+						
+									}
+					
+									}
+						
+									else {
+						
+									if (num1==4) {
+						
+										System.out.println("Bienvenido a Presentación con diapositivas");
+						
+										}
+										
+										}
+										
+					
+										if (num1>4 && num1<1)  {
 				
 						System.out.println("Introduce un numero comprendido entre 1 y 4");
 				
