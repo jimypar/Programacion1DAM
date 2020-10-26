@@ -5,38 +5,44 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		try {
-			
-			Scanner scan1 = new Scanner(System.in);
-			try {
 
-				System.out.println("Escribe un numero:");
-				long num = scan1.nextLong();
-								
-				if ( num % 2 == 0)
-					
-				    System.out.println("El número es par");
+		try {
+
+			Scanner scan1 = new Scanner(System.in);
+
+			System.out.println("Escribe un numero:");
+			long num = scan1.nextLong();
+
+						
+			if (num <1 || num >10) {
 				
-				else
-					
-				    System.out.println("El número es impar");
-			
-			
+				System.out.println("Introduce un numero entre 1 y 10");
+				
 			}
-			finally {
 			
+			else {
+			
+					if (num % 2 == 0) {
+		
+						System.out.println("El número es par");
+						
+					}	
+		
+					else {
+		
+						System.out.println("El número es impar");
+					}
+
+				}
 			scan1.close();
-				
-			}
-		
-		}
-		catch (Exception e) {
+
+		} catch (Exception e) {
+
+			System.out.println("Introduce un numero entero. " + e.getMessage());
 			
-			System.out.println("Introduce un numero entero");
-			
+
 		}
-		
+
 	}
 
 }
