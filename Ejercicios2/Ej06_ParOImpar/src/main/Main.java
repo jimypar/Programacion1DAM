@@ -34,6 +34,7 @@ public class Main {
 					}
 
 				}
+			
 			scan1.close();
 
 		} catch (Exception e) {
