@@ -26,7 +26,7 @@ public class Main {
 		
 			else {
 				
-				
+				int salario = 0; 
 				
 			}
 			
