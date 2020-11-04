@@ -56,7 +56,7 @@ public class Main {
 
 				return true;
 			}
-
+ 
 		} catch (Exception e) {
 
 			System.out.println("Introduce un numero entero");

@@ -26,7 +26,7 @@ public class Main {
 
 		try {
 
-			
+			System.out.println("------------------------------");
 			System.out.println("Introduce un numero del 1 al 7");
 
 			int num = scan.nextInt();
