@@ -8,7 +8,7 @@ public class Main {
 
 		Scanner scan1 = new Scanner(System.in);
 
-		System.out.println("Introduce la hora");
+		System.out.println("Introduce numeros");
 		System.out.println("num1,num2,num3");
 
 		String entrada = scan1.nextLine();
