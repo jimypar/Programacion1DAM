@@ -17,6 +17,7 @@ public class Main {
 			
 		do {
 			num =0;
+			System.out.println("Introduce un numero:");
 			num = scan.nextInt();
 			tot = tot+num;
 			n++;
