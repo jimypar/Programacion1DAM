@@ -20,13 +20,14 @@ public class Main {
 				System.out.println("Introduce la tarifa por horas:");
 				int tarifa = scan.nextInt();
 				int salario = horas*tarifa;
-				System.out.println(name+" su salario semanal es: "+salario+"€");
+				System.out.println(name+" su salario semanal es: "+salario+"ï¿½");
 				
 			}
 		
 			else {
 				
 				int salario = 0; 
+				System.out.println("Salario: "+salario);
 				
 			}
 			

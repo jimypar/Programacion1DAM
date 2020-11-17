@@ -3,11 +3,11 @@ package main;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	public static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		
+
 		boolean restart = programa();
 
 		do {
@@ -19,12 +19,8 @@ public class Main {
 		while (restart == true);
 		scan.close();
 	}
-	
-	private static boolean programa() {
-	
-	
 
-		
+	private static boolean programa() {
 
 		try {
 			System.out.println("");
@@ -36,114 +32,118 @@ public class Main {
 			System.out.println("Quieres desayuno?");
 
 			String answer1;
-			
-			boolean des;
 
-			while (true) {
-				answer1 = scan.nextLine().trim().toLowerCase();
+			boolean des = true;
+			boolean valido = false;
+
+			while (!valido){
+				answer1 = scan.nextLine();
 				if (answer1.equals("si")) {
 					des = true;
-					break;
+					valido=true;
 				} else if (answer1.equals("no")) {
 					des = false;
-					break;
-				}
-			}
-			
+					valido=true;
+				}	
+			}	
+
 			System.out.println("Quieres jacuzzi?");
 
 			String answer2;
-			boolean jac;
+			boolean jac = true;
+			valido = false;
 
-			while (true) {
+			while (!valido) {
 				answer2 = scan.nextLine().trim().toLowerCase();
 				if (answer2.equals("si")) {
 					jac = true;
-					break;
+					valido=true;
+
 				} else if (answer2.equals("no")) {
 					jac = false;
-					break;
+					valido=true;
+
 				}
 			}
 
 			System.out.println("Quieres climatizador?");
 
 			String answer3;
-			boolean cli;
+			boolean cli = true;
+			valido = false;
 
-			while (true) {
+			while (!valido) {
 				answer3 = scan.nextLine().trim().toLowerCase();
 				if (answer3.equals("si")) {
 					cli = true;
-					break;
+					valido=true;
+
 				} else if (answer3.equals("no")) {
 					cli = false;
-					break;
+					valido=true;
 				}
 			}
 
 			switch (hab) {
-			case "doble":
+				case "doble":
 
-				if (des == false && jac == false && cli == false) {
+					if (des == false && jac == false && cli == false) {
 
-					System.out.println("El precio es de 90");
+						System.out.println("El precio es de 90");
 
-					return true;
-				}
+						return true;
+					}
 
-				if (des == true && jac == false && cli == false) {
+					if (des == true && jac == false && cli == false) {
 
-					System.out.println("El precio es de 100");
+						System.out.println("El precio es de 100");
 
-					return true;
-				}
+						return true;
+					}
 
-				if (des == false && jac == true && cli == false) {
+					if (des == false && jac == true && cli == false) {
 
-					System.out.println("El precio es de 120");
+						System.out.println("El precio es de 120");
 
-					return true;
-				}
+						return true;
+					}
 
-				if (des == false && jac == false && cli == true) {
+					if (des == false && jac == false && cli == true) {
 
-					System.out.println("El precio es de 110");
+						System.out.println("El precio es de 110");
 
-					return true;
-				}
+						return true;
+					}
 
-				else {
+					else {
 
-					System.out.println("El precio es de 155");
-					return true;
-				}
+						System.out.println("El precio es de 155");
+						return true;
+					}
 
-				
+				case "simple":
 
-			case "simple":
+					if (des == false && jac == false && cli == false) {
 
-				if (des == false && jac == false && cli == false) {
+						System.out.println("El precio es de 80");
+						return true;
+					}
 
-					System.out.println("El precio es de 80");
-					return true;
-				}
+					if (des == true && jac == true && cli == true) {
 
-				if (des == true && jac == true && cli == true) {
+						System.out.println("El precio es de 140");
+						return true;
+					}
 
-					System.out.println("El precio es de 140");
-					return true;
-				}
+					else {
 
-				else {
+						System.out.println("El precio es de 155");
 
-					System.out.println("El precio es de 155");
+						return true;
+					}
 
-					return true;
-				}
-
-			default:
-				break;
+				default:
+					break;
 			}
 			System.out.println("Algo ha fallado");
 			return true;
@@ -152,5 +152,6 @@ public class Main {
 			System.out.println("Error");
 			return true;
 		}
+
 	}
 }

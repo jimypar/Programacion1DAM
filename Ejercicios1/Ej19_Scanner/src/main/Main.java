@@ -33,6 +33,10 @@ public class Main {
 		int num2 = scan3.nextByte();
 		
 		System.out.println("Numero: " +num2);
+
+		scan1.close();
+		scan2.close();
+		scan3.close();
 	}}
 		
 		

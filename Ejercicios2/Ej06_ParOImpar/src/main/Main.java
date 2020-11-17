@@ -9,7 +9,6 @@ public class Main {
 		try {
 
 			Scanner scan1 = new Scanner(System.in);
-<<<<<<< Updated upstream
 
 			System.out.println("Escribe un numero:");
 			long num = scan1.nextLong();
@@ -25,21 +24,20 @@ public class Main {
 			
 					if (num % 2 == 0) {
 		
-						System.out.println("El número es par");
+						System.out.println("El nï¿½mero es par");
 						
 					}	
 		
 					else {
 		
-						System.out.println("El número es impar");
+						System.out.println("El nï¿½mero es impar");
 					}
 
 				}
-=======
-			
+	
 
 				System.out.println("Escribe un numero:");
-				long num = scan1.nextLong();
+				num = scan1.nextLong();
 								
 				if (num <1 || num >10) {
 					
@@ -51,11 +49,11 @@ public class Main {
 				
 						if ( num % 2 == 0)
 							
-						    System.out.println("El número es par");
+						    System.out.println("El nï¿½mero es par");
 						
 						else
 							
-						    System.out.println("El número es impar");
+						    System.out.println("El nï¿½mero es impar");
 			
 				}
 			
@@ -63,12 +61,7 @@ public class Main {
 						
 		}
 		catch (Exception e) {
->>>>>>> Stashed changes
 			
-			scan1.close();
-
-		} catch (Exception e) {
-
 			System.out.println("Introduce un numero entero. " + e.getMessage());
 			
 
