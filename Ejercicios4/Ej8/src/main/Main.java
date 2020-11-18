@@ -2,44 +2,25 @@ package main;
 
 import java.util.Scanner;
 
-public class Main {
-
+public class Main {   
+  
 	public static void main(String[] args) {
-		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.print("Introduce el primer num:");
-		int n1 = scan.nextInt();
-		System.out.print("Introduce el segundo num:");
-		int n2 = scan.nextInt();
 
+		Scanner scan = new Scanner(System.in);
+
+		System.out.println("Introduce un numero:");
+		int num = scan.nextInt();
 		int i;
 		int suma = 0;
 
-		if (n1%2==0) {
-			
-			for (i=(n1+1);i<n2 ;i+=2) {
-				
-				System.out.println(i);
-				suma += i;
-				System.out.println("La suma es:"+suma);
-			}
-			
+		for (i = 1; i <= num; i += 2) {
+
+			suma += i;
+			System.out.println(i);
+
 		}
-		
-		else if (n1%2==1) {
-			
-			for (i=n1;i<n2 ;i+=2) {
-				
-				System.out.println(i);
-				suma += i;
-				System.out.println("La suma es:"+suma);
-			}
-			
-		}
-		
-		
-		
+
+		System.out.println("La suma es " + suma);
 	}
 
 }
