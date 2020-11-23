@@ -8,74 +8,82 @@ public class Main {
 
 		Scanner scan = new Scanner(System.in);
 
-		int i;int mult = 0;int acierto = 0;int fallo = 0;int aciertoT = 0;int falloT = 0;int num = 1;int tmax = 0;int tmin = 0;int maxE = 0;int minE = 11;
-		
-		
+		int i;
+		int mult = 0;
+		int acierto = 0;
+		int fallo = 0;
+		int aciertoT = 0;
+		int falloT = 0;
+		int num = 1;
+		int tmax = 0;
+		int tmin = 0;
+		int maxE = 0;
+		int minE = 11;
 
 		while (num != 0) {
-		
-		acierto = 0;
-		fallo = 0;
 
-		System.out.println(" ");
-		System.out.println("---------------------");
-		System.out.println("(Introduce 0 para terminar) ");
-		System.out.print("Introduce un numero: ");
-		num = scan.nextInt();
+			acierto = 0;
+			fallo = 0;
 
-		if (num == 0) {
-			
-			System.out.println("Has acertado: " + aciertoT+ " en total");
-			System.out.println("Has fallado: " + falloT+ " en total"); 
-			System.out.println("La tabla con mas fallos ha sido: "+tmax+ " con " +maxE+ " errores");
-			System.out.println("La tabla con menos fallos ha sido: "+tmin+ " con " +minE+ " errores" );
-			System.exit(0);
-		}
+			System.out.println(" ");
+			System.out.println("---------------------");
+			System.out.println("(Introduce 0 para terminar) ");
+			System.out.print("Introduce un numero: ");
+			num = scan.nextInt();
 
-		else {
+			if (num == 0) {
 
-			for (i = 1; i <= 10; i++) {
+				System.out.println("Has acertado: " + aciertoT + " en total");
+				System.out.println("Has fallado: " + falloT + " en total");
+				System.out.println("La tabla con mas fallos ha sido: " + tmax + " con " + maxE + " errores");
+				System.out.println("La tabla con menos fallos ha sido: " + tmin + " con " + minE + " errores");
+				System.exit(0);
+			}
 
-				int res = 0;
-				System.out.print(num + " x " + i + " es: ");
-				res = scan.nextInt();
-				mult = num * i;
+			else {
 
-				if (res == mult) {
+				for (i = 1; i <= 10; i++) {
 
-					System.out.println("Correcto");
-					acierto++;
-					aciertoT++;
+					int res = 0;
+					System.out.print(num + " x " + i + " es: ");
+					res = scan.nextInt();
+					mult = num * i;
+
+					if (res == mult) {
+
+						System.out.println("Correcto");
+						acierto++;
+						aciertoT++;
+					}
+
+					else {
+
+						System.out.println("Error");
+						System.out.println("El resultado era: " + num + "x" + i + "=" + mult);
+						fallo++;
+						falloT++;
+					}
+
 				}
 
-				else {
+				System.out.println("Has acertado: " + acierto);
+				System.out.println("Has fallado: " + fallo);
 
-					System.out.println("Error");
-					System.out.println("El resultado era: " + num + "x" + i + "=" + mult);
-					fallo++;
-					falloT++;
+				if (fallo > maxE) {
+
+					maxE = fallo;
+					tmax = num;
+
+				}
+
+				else if (fallo < minE) {
+
+					minE = fallo;
+					tmin = num;
+
 				}
 
 			}
-
-			System.out.println("Has acertado: " + acierto);
-			System.out.println("Has fallado: " + fallo);
-
-			if (fallo > maxE) {
-				
-				maxE = acierto;
-				tmax = num;
-				
-			}
-			
-			else if (fallo < minE) {
-				
-				maxE = acierto;
-				tmin = num;
-				
-			}	
-			
-		}
 		}
 	}
 }
