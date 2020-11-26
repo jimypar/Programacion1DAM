@@ -16,8 +16,8 @@ public class Main {
 		int hext;
 		double bruto = 0;
 		double neto = 0;
-		double max = 0;
-		double min = Integer.MAX_VALUE;
+		int max = 0;
+		int min = Integer.MAX_VALUE;
 	
 		
 
@@ -83,13 +83,13 @@ public class Main {
 			System.out.println("Salario bruto= "+bruto);
 			System.out.println("Salario neto= "+neto);
 
-			if (neto>max) {				
-				max=neto;
+			if ((h+hext)>max) {				
+				max=(h+hext);
 				nombremax = name;				
 			}
 			
-			if (neto<min ) {
-				min=neto;
+			if ((h+hext)<min ) {
+				min=(h+hext);
 				nombremin = name;					
 			}
 			
@@ -97,7 +97,7 @@ public class Main {
 		}
 		
 		System.out.println("El trabajador con mas horas es: "+nombremax+ " con " +max+ " horas ");
-		System.out.println("El trabajador con mas horas es: "+nombremin+ " con " +min+ " horas ");
+		System.out.println("El trabajador con menos horas es: "+nombremin+ " con " +min+ " horas ");
 		
 		scan.close();
 	}
