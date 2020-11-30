@@ -17,7 +17,7 @@ public class Main {
 
 		while (matr != 0) {
 
-			System.out.println("Introduce matricula (0000-9999)");
+			System.out.println("Introduce matricula (0000-9999) (0 para terminar)");
 			
 			matr = scan.nextInt();
 						
@@ -73,11 +73,11 @@ public class Main {
 		int tot = araN + catN + madN + andN + galN;
 		
 		System.out.println("Provincia    | Porcentaje");
-		System.out.println("Aragon       | "+((double)araN/tot)*100+"%");
-		System.out.println("Cataluña     | "+((double)catN/tot)*100+"%");
-		System.out.println("Madrid       | "+((double)madN/tot)*100+"%");
-		System.out.println("Andalucia    | "+((double)andN/tot)*100+"%");
-		System.out.println("Galicia      | "+((double)galN/tot)*100+"%");
+		System.out.println("Aragon       | "+((float)araN/tot)*100+"%");
+		System.out.println("Cataluña     | "+((float)catN/tot)*100+"%");
+		System.out.println("Madrid       | "+((float)madN/tot)*100+"%");
+		System.out.println("Andalucia    | "+((float)andN/tot)*100+"%");
+		System.out.println("Galicia      | "+((float)galN/tot)*100+"%");
 
 		scan.close();
 	}
