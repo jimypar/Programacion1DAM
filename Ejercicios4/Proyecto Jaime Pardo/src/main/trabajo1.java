@@ -77,6 +77,4 @@ public class trabajo1 {
 		System.out.println("Galicia      | " + ((float) galN / tot) * 100 + "%");
 
 	}
-
-	
 }

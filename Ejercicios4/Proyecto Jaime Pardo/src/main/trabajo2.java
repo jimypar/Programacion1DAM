@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class trabajo2 {
 
 	public static void Trabajo2(Scanner scan) {
-		
+
 		float mediaGrupo = 0;
 
 		System.out.print("Cuantos grupos hay este año?:");
@@ -15,14 +15,13 @@ public class trabajo2 {
 			System.out.println();
 			System.out.print("Cuantos grupos hay este año?:");
 			Ngrupos = scan.nextInt();
-			
+
 		}
-		
 
 		for (int i = 1; i <= Ngrupos; i++) {
 
 			float mediaAlumno = 0;
-			
+
 			System.out.println("Grupo " + i);
 			System.out.println("--------");
 
@@ -34,13 +33,12 @@ public class trabajo2 {
 				System.out.print("Cuantos alumnos hay en el grupo " + i + " :");
 				alumno = scan.nextInt();
 			}
-			
 
 			for (int a = 1; a <= alumno; a++) {
 
 				float mediaMaterias = 0;
 				float nota1, nota2, nota3;
-				float media;
+
 				System.out.println();
 				System.out.println("----------" + a + "º Alumno-----------");
 				System.out.println();
@@ -55,6 +53,7 @@ public class trabajo2 {
 
 				for (int m = 1; m <= Nmaterias; m++) {
 
+					float media;
 					System.out.println();
 					System.out.println(m + "ª Materia");
 					System.out.println("-------------");
@@ -99,6 +98,7 @@ public class trabajo2 {
 		}
 
 		System.out.println("MEDIA DE GRUPOS = " + mediaGrupo);
+
 	}
 
 }
