@@ -6,7 +6,6 @@ public class trabajo3 {
 
 	public static void Trabajo3(Scanner scan) {
 
-
 		String name = null;
 		String nombremax = null;
 		String nombremin = null;
@@ -17,8 +16,6 @@ public class trabajo3 {
 		double neto = 0;
 		int max = 0;
 		int min = Integer.MAX_VALUE;
-	
-		
 
 		while (name != "*") {
 
@@ -78,25 +75,25 @@ public class trabajo3 {
 				System.exit(0);
 				break;
 			}
-			
-			System.out.println("Salario bruto= "+bruto);
-			System.out.println("Salario neto= "+neto);
 
-			if ((h+hext)>max) {				
-				max=(h+hext);
-				nombremax = name;				
+			System.out.println("Salario bruto= " + bruto);
+			System.out.println("Salario neto= " + neto);
+
+			if ((h + hext) > max) {
+				max = (h + hext);
+				nombremax = name;
 			}
-			
-			if ((h+hext)<min ) {
-				min=(h+hext);
-				nombremin = name;					
+
+			if ((h + hext) < min) {
+				min = (h + hext);
+				nombremin = name;
 			}
-			
-			
+
 		}
-		
-		System.out.println("El trabajador con mas horas es: "+nombremax+ " con " +max+ " horas ");
-		System.out.println("El trabajador con menos horas es: "+nombremin+ " con " +min+ " horas ");
+
+		System.out.println("El trabajador con mas horas es: " + nombremax + " con " + max + " horas ");
+		System.out.println("El trabajador con menos horas es: " + nombremin + " con " + min + " horas ");
+
 	}
 
 }

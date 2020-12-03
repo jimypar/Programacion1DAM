@@ -6,6 +6,8 @@ public class trabajo4 {
 
 	public static void Trabajo4(Scanner scan) {
 
+		String[] args = null;
+
 		System.out.println("CAJERO AUTOMATICO:");
 		System.out.println("_________________");
 		System.out.println("");
@@ -17,26 +19,24 @@ public class trabajo4 {
 
 			System.out.print("Introduce clave PIN:");
 			int num = scan.nextInt();
-			String nume = num+"";
+			String nume = num + "";
 			int longitud = nume.length();
-			
-			
-			while (longitud !=4 ) {
+
+			while (longitud != 4) {
 				System.out.println("La clave debe contener 4 digitos:");
 				System.out.print("Introduce clave PIN:");
 				num = scan.nextInt();
-				nume = num+"";
+				nume = num + "";
 				longitud = nume.length();
 			}
-			
+
 			intento++;
 
 			if (num != 1234) {
 				System.out.println("Clave incorrecta");
 				valido = false;
 			}
-			
-			
+
 			if (num == 1234) {
 
 				System.out.println("Clave correcta");
@@ -58,6 +58,7 @@ public class trabajo4 {
 
 					switch (menu) {
 					case 4:
+						Main.main(args);
 						break;
 
 					case 1:
@@ -92,7 +93,6 @@ public class trabajo4 {
 		}
 
 		System.out.println("Numero maximo de intentos(3) superado.");
-		
 
 	}
 
