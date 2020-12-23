@@ -1,0 +1,74 @@
+package main;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		boolean si;
+		while (si){
+		
+		System.out.println("Introduce un numero par (2-100)");
+		int num = scan.nextInt();
+		int num2 = 0;
+		int suma = 0;
+		int max = 0;
+		int min = Integer.MAX_VALUE;
+
+		while (num % 2 != 0 && num < 2 || num > 100) {
+			System.out.println("ERROR");
+			System.out.println("Introduce un numero par (2-100)");
+			num = scan.nextInt();
+		}
+
+		for (int a = num2; a <= num; a += 2) {
+
+			for (int i = a; i >= 0; i = i - 2) {
+
+				System.out.print(i + " ");
+
+				suma += i;
+
+				if (i > max) {
+					max = i;
+				}
+				if (i < min) {
+					min = i;
+				}
+
+			}
+
+			System.out.println();
+		}
+
+		System.out.println("Suma = " + suma);
+		System.out.println("Maximo = " + max);
+		System.out.println("Minimo = " + min);
+		
+		System.out.println("Deseas continuar? si o no");
+		
+		String pregunta;		
+		
+		
+		while (si) {
+		pregunta = scan.nextLine().trim().toLowerCase();
+		if (pregunta.equals("si")) {
+			si = true;
+			 break;
+			}
+		else if (pregunta.equals("no")) {
+			si = false;
+			System.exit(0);
+			}
+		}
+		}	
+				
+
+		scan.close();
+
+	}
+
+}

@@ -74,7 +74,7 @@ public class Main {
 		
 		System.out.println("Provincia    | Porcentaje");
 		System.out.println("Aragon       | "+((float)araN/tot)*100+"%");
-		System.out.println("Cataluña     | "+((float)catN/tot)*100+"%");
+		System.out.println("Cataluna     | "+((float)catN/tot)*100+"%");
 		System.out.println("Madrid       | "+((float)madN/tot)*100+"%");
 		System.out.println("Andalucia    | "+((float)andN/tot)*100+"%");
 		System.out.println("Galicia      | "+((float)galN/tot)*100+"%");
