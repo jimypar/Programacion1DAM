@@ -1,8 +1,0 @@
-content_assist_number_of_computers=19
-eclipse.preferences.version=1
-org.eclipse.jdt.ui.formatterprofiles.version=14
-org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="true" context\="java" deleted\="false" description\="" enabled\="true" name\="&lt;pira&gt;">&\#13;\r\n&\#13;\r\n\tScanner scan \= new Scanner(System.in);&\#13;\r\n\t&\#13;\r\n\tboolean restart \= false;&\#13;\r\n\t\t&\#13;\r\n\tdo {&\#13;\r\n\t\t&\#13;\r\n\t\trestart \= programa();&\#13;\r\n\t\t&\#13;\r\n\t} while (restart \=\= true);&\#13;\r\n\t\tscan.close();&\#13;\r\n\t}&\#13;\r\n&\#13;\r\n\tprivate static boolean programa() {&\#13;\r\n\t\t&\#13;\r\n\t\tSystem.out.println("Introduce si o no");&\#13;\r\n\t\t&\#13;\r\n\t\tString pregunta;&\#13;\r\n\t\t&\#13;\r\n\t\tboolean si;&\#13;\r\n\t\t&\#13;\r\n\t\twhile (true) {&\#13;\r\n\t\tpregunta \= scan.nextLine();&\#13;\r\n\t\tif (pregunta.equals("si")) {&\#13;\r\n\t\t\tsi \= true;&\#13;\r\n\t\t\t break;&\#13;\r\n\t\t\t}&\#13;\r\n\t\telse if (pregunta.equals("no")) {&\#13;\r\n\t\t\tsi \= false;&\#13;\r\n\t\t\tbreak;&\#13;\r\n\t\t\t}&\#13;\r\n\t\t}&\#13;\r\n\t\t\t&\#13;\r\n\t\t&\#13;\r\n\t\tif (si \=\= true ) {&\#13;\r\n\t\t\t&\#13;\r\n\t\t\tSystem.out.println("Has dicho si");&\#13;\r\n\t\t}&\#13;\r\n\t\t\t&\#13;\r\n\t\tif (si \=\= false) {&\#13;\r\n\t\t\t\t&\#13;\r\n\t\t\tSystem.out.println("Has dicho no");&\#13;\r\n\t\t\t\t&\#13;\r\n\t\t}\t\t&\#13;\r\n\t\t&\#13;\r\n\t\t&\#13;\r\n\t\treturn false;&\#13;\r\n\t}</template></templates>
-org.eclipse.jdt.ui.text.templates_migrated=true
-spelling_locale_initialized=true
-useAnnotationsPrefPage=true
-useQuickDiffPrefPage=true
