@@ -1,36 +1,38 @@
 package main;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
-		System.out.println("Texto:");
-		String text = scan.nextLine();
-		System.out.println("Numero de rotaciones:");
-		int r = scan.nextInt();
-		String newtext = "";
+        int[] numeros = new int[3];
 
-		for (int i = 1; i <= r; i++) {
-			
-			newtext = ""+text.charAt(text.length()-1);
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Numero: ");
+            numeros[i] = scan.nextInt();
+        }
 
-			for (int x = 0; x < text.length()-1; x++) {
-				
-				newtext += text.charAt(x);
-				
-			}
+        String n1 = numeros[0] + "";
+        String n2 = numeros[1] + "";
+        String n3 = numeros[2] + "";
 
-			text = newtext;
-			
-		}
+        long[] posibilidad = new long[6];
 
-		System.out.println(newtext);
-		scan.close();
-		
-	}
+        posibilidad[0] = Long.parseLong(n1 + n2 + n3);
+        posibilidad[1] = Long.parseLong(n1 + n3 + n2);
+        posibilidad[2] = Long.parseLong(n2 + n3 + n1);
+        posibilidad[3] = Long.parseLong(n2 + n1 + n3);
+        posibilidad[4] = Long.parseLong(n3 + n2 + n1);
+        posibilidad[5] = Long.parseLong(n3 + n1 + n2);
+
+        Arrays.sort(posibilidad);
+
+        System.out.println("Orden: " + posibilidad[5]);
+
+    }
 
 }
