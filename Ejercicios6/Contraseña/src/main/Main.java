@@ -11,7 +11,7 @@ public class Main {
 		while (true) {
 
 			System.out.println();
-			System.out.print("Contraseña:");
+			System.out.print("Contrasena:");
 			String text = scan.nextLine();
 			
 			if (text.equals("exit")) {
@@ -20,7 +20,7 @@ public class Main {
 
 			while (text.length() > 20) {
 				System.out.println("Tiene que tener menos de 20 caracteres");
-				System.out.println("Contraseña:");
+				System.out.println("Contrasensa:");
 				text = scan.nextLine();
 			}
 

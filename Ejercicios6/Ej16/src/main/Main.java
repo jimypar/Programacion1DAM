@@ -8,13 +8,11 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 
 		System.out.print("Frase:");
-		String frase = "";
-		frase = scan.nextLine();
+		String frase = scan.nextLine();
 
-		int ultimaPosicion = frase.length() - 1;
 		int espacio = 0;
 
-		for (int i = 0; i < ultimaPosicion; i++) {
+		for (int i = 0; i < (frase.length() - 1); i++) {
 			if (frase.charAt(i) == ' ')
 				espacio++;
 		}
