@@ -27,7 +27,6 @@ public class Main {
 
 		int matriz[][] = new int[rango][rango];
 
-		
 		try {
 			OperacionesMatriz.rellenar(matriz);
 		} catch (NumberFormatException | IOException e) {
@@ -38,18 +37,45 @@ public class Main {
 		if (OperacionesMatriz.simetrica(matriz)) {
 			System.out.println();
 			System.out.println("Es simetrica");
-		}
-		else {
+		} else {
 			System.out.println();
 			System.out.println("No es simetrica");
 		}
 
-		OperacionesMatriz.MaxFila();
-		OperacionesMatriz.MaxColumna();
-		OperacionesMatriz.MaxMatriz();
-		OperacionesMatriz.SumaFilas();
-		OperacionesMatriz.SumaColumnas();
+		System.out.println();
+		System.out.println("MAXIMO VALOR FILA:");
+		System.out.println("------------------");
 		
+		for (int i = 0; i < matriz.length; i++) {
+			System.out.println("El valor maximo de la fila "+(i+1)+" es "+ OperacionesMatriz.MaxFila(matriz, i)+" en la columna: "+(OperacionesMatriz.posy+1));
+		}
+	
+		System.out.println();
+		System.out.println("MAXIMO VALOR COLUMNA:");
+		System.out.println("------------------");
+		for (int i = 0; i < matriz[0].length; i++) {
+			System.out.println("El valor maximo de la columna "+(i+1)+" es "+ OperacionesMatriz.MaxColumna(matriz, i)+" en la fila: "+(OperacionesMatriz.posy+1));
+		}
+		
+		System.out.println();
+		System.out.println("MAXIMO VALOR MATRIZ:");
+		System.out.println("------------------");
+		
+		OperacionesMatriz.MaxMatriz(matriz);
+		System.out.println("El valor maximo es " +matriz[OperacionesMatriz.posx][OperacionesMatriz.posy]+" en m["+(OperacionesMatriz.posx+1)+"]["+(OperacionesMatriz.posy+1)+"]");
+		
+		System.out.println();
+		System.out.println("SUMA FILA:");
+		System.out.println("------------------");
+		
+		OperacionesMatriz.SumaFilas(matriz);
+		
+		System.out.println();
+		System.out.println("SUMA COLUMNA");
+		System.out.println("------------------");
+		
+		OperacionesMatriz.SumaColumnas(matriz);
+
 	}
 
 }
