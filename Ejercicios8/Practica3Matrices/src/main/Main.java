@@ -45,6 +45,7 @@ public class Main {
 		
 		System.out.println();
 		OperacionesMatriz.ordenar(matriz);
+		OperacionesMatriz.visualizar(matriz);
 		
 		
 	}

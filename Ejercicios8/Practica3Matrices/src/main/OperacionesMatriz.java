@@ -46,21 +46,26 @@ public class OperacionesMatriz {
 	}
 
 	public static void ordenar(int[][] m) {
+
+		System.out.println(m[0][1]);
 		
-		
-		for (int i = m.length-1; i >= 1 ; i--) {
-			for (int j = m.length - 1; j >= 1; j--) {
-				if (m[j][i] < m[j - 1][i]) {
-					int aux = m[i][j];
-					m[i][j] = m[i - 1][j];
-					m[(i - 1)][j] = aux;
+		for (int k = 0; k < m.length; k++) {
+
+			int aux;
+			for (int i = 1; i < m.length; i++) {
+
+				for (int j = m.length - 1; j >= 1; j--) {
+					if (m[k][j] < m[k][j - 1]) {
+						aux = m[k][j];
+						m[k][j] = m[k][j - 1];
+						m[k][(j - 1)] = aux;
+
+					}
 
 				}
-
-			} 
+			}
 		}
-		
-		
+
 	}
 
 }
