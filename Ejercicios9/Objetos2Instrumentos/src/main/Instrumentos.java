@@ -12,9 +12,9 @@ public class Instrumentos {
 	
 	Instrumentos(){
 		
-		nombre = "";
-		tipo = "";
-		precio = 0;
+		this.nombre = "";
+		this.tipo = "";
+		this.precio = 0;
 		
 	}
 	
