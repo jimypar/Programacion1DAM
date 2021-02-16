@@ -1,14 +1,15 @@
 package main;
 
 public class Libro {
-    String titulo;
-    String autor;
-    boolean estado;
+	
+    private String titulo;
+    private String autor;
+    private boolean estado;
 
     public Libro() {
-    	titulo = "";
-        autor = "";
-        estado = true;  	
+    	this.titulo = "";
+        this.autor = "";
+        this.estado = true;  	
     }
     
 	public Libro(String titulo, String autor, boolean estado) {                                    

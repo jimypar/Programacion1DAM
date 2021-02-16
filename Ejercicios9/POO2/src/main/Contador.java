@@ -2,7 +2,7 @@ package main;
 
 public class Contador {
 
-    int cont;
+    private int cont;
 
     Contador() {
     	cont = 0;
