@@ -14,15 +14,11 @@ public class Tablero {
 
 	// CONSTRUCTOR TABLERO
 	Tablero() {
-		for (int x = 0; x < this.tablero1.length; x++) {
-			for (int i = 0; i < this.tablero1[0].length; i++) {
-				this.tablero1[x][i] = " ";
-				this.tablero2[x][i] = " ";
-			}
-		}
+		vaciarTableros();
 		barcoundido = 0;
 		intento=1;
 		acierto = false;
+		
 	}
 
 	// GETTERS Y SETTERS
@@ -48,6 +44,7 @@ public class Tablero {
 		this.acierto = acierto;
 	}
 
+	
 	// VISUALIZAR TABLA
 	public void visualizar(String[][] m) {
 		System.out.println("Y-> 0   1   2   3   4   5   6   7   8   9   ");
