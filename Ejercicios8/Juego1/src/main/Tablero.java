@@ -6,11 +6,12 @@ public class Tablero {
 
 	private Scanner scan = new Scanner(System.in);
 
-	private String tablero1[][] = new String[10][10];
-	private String tablero2[][] = new String[10][10];
+	private String tablero1[][] = new String[5][5];
+	private String tablero2[][] = new String[5][5];
 	private int barcoundido;
 	private int intento;
 	private boolean acierto;
+	private int numAcierto;
 
 	// CONSTRUCTOR TABLERO
 	Tablero() {
@@ -18,6 +19,7 @@ public class Tablero {
 		barcoundido = 0;
 		intento=1;
 		acierto = false;
+		
 		
 	}
 
@@ -47,16 +49,16 @@ public class Tablero {
 	
 	// VISUALIZAR TABLA
 	public void visualizar(String[][] m) {
-		System.out.println("Y-> 0   1   2   3   4   5   6   7   8   9   ");
+		System.out.println("Y-> 0   1   2   3   4     ");
 		for (int x = 0; x < m.length; x++) {
-			System.out.println(" -----------------------------------------");
+			System.out.println(" ----------------------");
 			System.out.print(x + "-| ");
 			for (int i = 0; i < m[0].length; i++) {
 				System.out.print(m[x][i] + " | ");
 			}
 			System.out.println();
 		}
-		System.out.println("  -----------------------------------------");
+		System.out.println("  ----------------------");
 
 	}
 
@@ -70,7 +72,7 @@ public class Tablero {
 				x = scan.nextInt();
 				System.out.print("Y:");
 				y = scan.nextInt();
-			} while ((x < 0 || x > 9) && (y < 0 || y > 9));
+			} while ((x < 0 || x > 4) && (y < 0 || y > 4));
 
 			m[x][y] = "O";
 		}
@@ -107,12 +109,12 @@ public class Tablero {
 		int y = 0;
 
 		do {
-			System.out.println("Introduce las cordenadas x/y (Intento: "+this.intento+")");
+			System.out.println("Introduce las cordenadas x/y (Intento: "+this.intento+", "+this.barcoundido+" aciertos, "+((this.intento-this.barcoundido)-1)+" fallos)");
 			System.out.print("X:");
 			x = scan.nextInt();
 			System.out.print("Y:");
 			y = scan.nextInt();
-		} while ((x < 0 || x > 9) && (y < 0 || y > 9));
+		} while ((x < 0 || x > 4) && (y < 0 || y > 4));
 		if (tab1[x][y].contentEquals("O")) {
 			tab2[x][y] = "X";
 			this.barcoundido++;

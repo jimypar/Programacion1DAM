@@ -12,7 +12,7 @@ public class Concesionario {
 	Concesionario() {
 		this.nombre = "";
 	}
-	
+
 	Concesionario(String nombre) {
 		this.nombre = nombre;
 	}
@@ -24,16 +24,17 @@ public class Concesionario {
 	void rellenar() {
 		String respuesta;
 		boolean continuar = true;
-		
+
 		do {
 			System.out.println("Introduce un coche:");
-			v.add(scan.next());
+			v.add(scan.nextLine());
 			System.out.println("Deseas continuar?");
-			respuesta = scan.next();
+			respuesta = scan.nextLine();
 			if (respuesta.trim().toLowerCase().equalsIgnoreCase("si")) {
 				continuar = true;
+			} else {
+				continuar = false;
 			}
-			else {continuar=false;}
 		} while (continuar);
 
 	}
@@ -45,18 +46,33 @@ public class Concesionario {
 		}
 	}
 
-	public void eliminarCoche() {
+	public void remplazar() {
 
 		System.out.println("Borrar un coche:");
-		System.out.println("Que coche quieres buscar?");
+		System.out.println("Que coche quieres remplazar?");
 		String coche = scan.next();
 		if (v.contains(coche)) {
-			v.remove(coche);
-			System.out.println(coche+ " borrado.");
+			int pos = v.indexOf(coche);
+			System.out.println("Que coche quieres remplazar por "+coche);
+			v.set(pos,scan.next());			
 		} else {
 			System.out.println("No esta");
 		}
-		
+
+	}
+
+	public void eliminarCoche() {
+
+		System.out.println("Borrar un coche:");
+		System.out.println("Que coche quieres borrar?");
+		String coche = scan.next();
+		if (v.contains(coche)) {
+			v.remove(coche);
+			System.out.println(coche + " borrado.");
+		} else {
+			System.out.println("No esta");
+		}
+
 	}
 
 }

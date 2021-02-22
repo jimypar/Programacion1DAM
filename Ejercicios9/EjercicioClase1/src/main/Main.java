@@ -20,13 +20,18 @@ public class Main {
 			if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
 				i = -1;
 			}
-
+			
 		}
 
 		do {
 		int numConcesionario = -1;
 		do {
+			System.out.println();
 			System.out.println("Elige un concesionario:");
+			for (int i = 0; i < v.size(); i++) {
+				System.out.println("- "+v.elementAt(i).getNombre());
+			}
+			System.out.print(":");
 			String busqueda = scan.next();
 			for (int i = 0; i < v.size(); i++) {
 				if (v.elementAt(i).getNombre().equals(busqueda)) {
@@ -38,8 +43,9 @@ public class Main {
 		System.out.println("Que deseas hacer?");
 		System.out.println("1-Rellenar concesionario");
 		System.out.println("2-Ver concesionario");
-		System.out.println("3-eliminar coche concesionario");
-		System.out.println("4-salir");
+		System.out.println("3-Remplazar coche");
+		System.out.println("4-Eliminar coche concesionario");
+		System.out.println("4-Salir");
 		int menu = scan.nextInt();
 		switch (menu) {
 		case 1:
@@ -49,9 +55,13 @@ public class Main {
 			v.elementAt(numConcesionario).visualizar();
 			break;
 		case 3:
-			v.elementAt(numConcesionario).eliminarCoche();
+			v.elementAt(numConcesionario).remplazar();
 			break;
 		case 4:
+			v.elementAt(numConcesionario).eliminarCoche();
+			break;
+		case 5:
+			scan.close();
 			System.exit(0);
 		}
 		}while(true);
