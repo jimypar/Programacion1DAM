@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Tablero {
 
 	private Scanner scan = new Scanner(System.in);
-	private String[][] tablero = new String[3][3];
+	private char[][] tablero = new char[3][3];
 
 	Tablero() {
 		vaciarTableros();
@@ -14,12 +14,12 @@ public class Tablero {
 	public void vaciarTableros() {
 		for (int x = 0; x < this.tablero.length; x++) {
 			for (int i = 0; i < this.tablero[0].length; i++) {
-				this.tablero[x][i] = " ";
+				this.tablero[x][i] = ' ';
 			}
 		}
 	}
 
-	public String[][] getTablero() {
+	public char[][] getTablero() {
 		return tablero;
 	}
 
@@ -35,7 +35,7 @@ public class Tablero {
 		}
 		System.out.println("   -------------");
 	}
-
+	
 	public void rellenar(int jugador) {
 		int x, y;
 
@@ -45,35 +45,36 @@ public class Tablero {
 			x = scan.nextInt();
 			System.out.print("Y:");
 			y = scan.nextInt();
-		} while ((x < 1 || x > 3) || (y < 1 || y > 3) || tablero[x-1][y-1]!=" ");
+		} while ((x < 1 || x > 3) || (y < 1 || y > 3) || tablero[x-1][y-1]!=' ');
 
 		if (jugador == 1) {
-			tablero[x - 1][y - 1] = "X";
+			tablero[x - 1][y - 1] = 'X';
 		}
 		if (jugador == 2) {
-			tablero[x - 1][y - 1] = "O";
+			tablero[x - 1][y - 1] = 'O';
 		}
 
 	}
 
 	public boolean ganado() {
 
+		//FILA
 		for (int i = 0; i < tablero.length; i++) {
-			if (tablero[i][0] == tablero[i][1] && tablero[i][1] == tablero[i][2] && tablero[i][0] != " ") {
+			if (tablero[i][0] == tablero[i][1] && tablero[i][1] == tablero[i][2] && tablero[i][0] != ' ') {
 				return true;
 			}
 		}
-		// Columna
+		//COLUMNA
 		for (int c = 0; c < tablero[0].length; c++) {
-			if (tablero[0][c] == tablero[1][c] && tablero[1][c] == tablero[2][c] && tablero[0][c] != " ") {
+			if (tablero[0][c] == tablero[1][c] && tablero[1][c] == tablero[2][c] && tablero[0][c] != ' ') {
 				return true;
 			}
 		}
 		//DIAGONAL
-		if (tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2] && tablero[0][0] != " ") {
+		if (tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2] && tablero[0][0] != ' ') {
 			return true;
 		}
-		if (tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0] && tablero[0][2] != " ") {
+		if (tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0] && tablero[0][2] != ' ') {
 			return true;
 		}
 
@@ -85,7 +86,7 @@ public class Tablero {
 		
 		for (int x = 0; x < this.tablero.length; x++) {
 			for (int i = 0; i < this.tablero[0].length; i++) {
-				if (this.tablero[x][i] == " ") {
+				if (this.tablero[x][i] == ' ') {
 					empate = false;
 				}
 			}

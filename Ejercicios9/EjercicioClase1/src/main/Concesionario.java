@@ -24,7 +24,7 @@ public class Concesionario {
 	void rellenar() {
 		String respuesta;
 		boolean continuar = true;
-
+		
 		do {
 			System.out.println("Introduce un coche:");
 			v.add(scan.nextLine());
@@ -53,8 +53,8 @@ public class Concesionario {
 		String coche = scan.next();
 		if (v.contains(coche)) {
 			int pos = v.indexOf(coche);
-			System.out.println("Que coche quieres remplazar por "+coche);
-			v.set(pos,scan.next());			
+			System.out.println("Que coche quieres remplazar por " + coche);
+			v.set(pos, scan.next());
 		} else {
 			System.out.println("No esta");
 		}

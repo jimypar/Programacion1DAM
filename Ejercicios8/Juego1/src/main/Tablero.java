@@ -1,5 +1,6 @@
 package main;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Tablero {
@@ -11,16 +12,14 @@ public class Tablero {
 	private int barcoundido;
 	private int intento;
 	private boolean acierto;
-	private int numAcierto;
 
 	// CONSTRUCTOR TABLERO
 	Tablero() {
 		vaciarTableros();
 		barcoundido = 0;
-		intento=1;
+		intento = 1;
 		acierto = false;
-		
-		
+
 	}
 
 	// GETTERS Y SETTERS
@@ -39,20 +38,21 @@ public class Tablero {
 	public String[][] getTablero2() {
 		return tablero2;
 	}
+
 	public boolean getAcierto() {
 		return acierto;
 	}
+
 	public void setAcierto(boolean acierto) {
 		this.acierto = acierto;
 	}
 
-	
 	// VISUALIZAR TABLA
 	public void visualizar(String[][] m) {
-		System.out.println("Y-> 0   1   2   3   4     ");
+		System.out.println("Y-> 1   2   3   4   5  ");
 		for (int x = 0; x < m.length; x++) {
 			System.out.println(" ----------------------");
-			System.out.print(x + "-| ");
+			System.out.print((x + 1) + "-| ");
 			for (int i = 0; i < m[0].length; i++) {
 				System.out.print(m[x][i] + " | ");
 			}
@@ -63,18 +63,30 @@ public class Tablero {
 	}
 
 	public void introducirBarco(String[][] m) {
-		int x, y;
+
+		int x = 0, y = 0;
 
 		for (int i = 0; i < 3; i++) {
-			do {
-				System.out.println("Introduce las cordenadas x/y (Barco " + (i + 1) + ")");
-				System.out.print("X:");
-				x = scan.nextInt();
-				System.out.print("Y:");
-				y = scan.nextInt();
-			} while ((x < 0 || x > 4) && (y < 0 || y > 4));
 
-			m[x][y] = "O";
+			do {
+
+				try {
+
+					System.out.println("Introduce las cordenadas x/y (Barco " + (i + 1) + ")");
+					System.out.print("X:");
+					x = scan.nextInt();
+					System.out.print("Y:");
+					y = scan.nextInt();
+				} catch (InputMismatchException e) {
+					System.out.println("Introduce caracteres validos");
+					scan.nextLine();
+					i = 0;
+				}
+
+			} while ((x < 1 || x > 5) || (y < 1 || y > 5) || m[x - 1][y - 1] == "O");
+
+			m[x - 1][y - 1] = "O";
+
 		}
 
 	}
@@ -109,22 +121,30 @@ public class Tablero {
 		int y = 0;
 
 		do {
-			System.out.println("Introduce las cordenadas x/y (Intento: "+this.intento+", "+this.barcoundido+" aciertos, "+((this.intento-this.barcoundido)-1)+" fallos)");
-			System.out.print("X:");
-			x = scan.nextInt();
-			System.out.print("Y:");
-			y = scan.nextInt();
-		} while ((x < 0 || x > 4) && (y < 0 || y > 4));
-		if (tab1[x][y].contentEquals("O")) {
-			tab2[x][y] = "X";
+			try {
+				System.out.println("Introduce las cordenadas x/y (Intento: " + this.intento + ", " + this.barcoundido
+						+ " aciertos, " + ((this.intento - this.barcoundido) - 1) + " fallos)");
+				System.out.print("X:");
+				x = scan.nextInt();
+				System.out.print("Y:");
+				y = scan.nextInt();
+
+			} catch (InputMismatchException e) {
+				System.out.println("Introduce caracteres validos");
+				scan.nextLine();
+			}
+
+		} while ((x < 1 || x > 5) || (y < 1 || y > 5) || tab2[x - 1][y - 1] == "o" || tab2[x - 1][y - 1] == "X");
+		if (tab1[x - 1][y - 1].contentEquals("O")) {
+			tab2[x - 1][y - 1] = "X";
 			this.barcoundido++;
 			this.acierto = true;
 		} else if (tab1[x][y].contentEquals(" ")) {
-			tab2[x][y] = "o";
+			tab2[x - 1][y - 1] = "o";
 			this.acierto = false;
 		}
 		this.intento++;
-		
+
 	}
 
 	public boolean ganado() {
@@ -133,7 +153,5 @@ public class Tablero {
 		}
 		return false;
 	}
-
-	
 
 }
