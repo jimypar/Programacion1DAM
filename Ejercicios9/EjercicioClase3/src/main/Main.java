@@ -44,7 +44,7 @@ public class Main {
 			} while (numClase == -1);
 
 			System.out.println("Que deseas hacer?");
-			System.out.println("1-Rellenar clase");
+			System.out.println("1-Rellenar alumno");
 			System.out.println("2-Modificar alumnos");
 			System.out.println("3-Visualizar alumnos");
 			System.out.println("4-Salir");

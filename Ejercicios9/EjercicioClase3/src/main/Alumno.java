@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 public class Alumno {
 
+	private Scanner scan = new Scanner(System.in);
 	private String nombre;
 	private ArrayList<Integer> notas = new ArrayList<Integer>();
-	private Scanner scan = new Scanner(System.in);
+	
 
 	Alumno() {
 		this.nombre = "";

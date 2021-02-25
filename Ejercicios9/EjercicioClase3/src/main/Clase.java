@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Clase {
 
-	private String nombre;
 	private Scanner scan = new Scanner(System.in);
+	private String nombre;
 	private ArrayList<Alumno> alumno = new ArrayList<Alumno>();
 	
 	Clase() {
@@ -17,8 +17,6 @@ public class Clase {
 		this.nombre = nombre;
 	}
 
-	
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -27,7 +25,7 @@ public class Clase {
 
 		for (int i = 1; i > 0; i++) {
 			System.out.println("Introduce el nombre del alumno " + i);
-			alumno.add(new Alumno(scan.next()));
+			this.alumno.add(new Alumno(scan.next()));
 
 			System.out.println("Deseas crear otro? (si/no)");
 			String respuesta = scan.next();
@@ -39,7 +37,7 @@ public class Clase {
 
 	}
 	
-	public void visualizar() {
+	void visualizar() {
 		System.out.println(this.nombre);
 		for (int i = 0; i < this.alumno.size(); i++) {
 			System.out.println();
@@ -50,13 +48,14 @@ public class Clase {
 	}
 
 	void menu() {
+		boolean salir = false;
 		do {
 			int numAlumno = -1;
 			do {
 				System.out.println("Elige un alumno");
 				String busqueda = scan.next();
-				for (int i = 0; i < alumno.size(); i++) {
-					if (alumno.get(i).getNombre().equals(busqueda)) {
+				for (int i = 0; i < this.alumno.size(); i++) {
+					if (this.alumno.get(i).getNombre().equals(busqueda)) {
 						numAlumno = i;
 					}
 				}
@@ -70,18 +69,18 @@ public class Clase {
 			int menu = scan.nextInt();
 			switch (menu) {
 			case 1:
-				alumno.get(numAlumno).rellenar();
+				this.alumno.get(numAlumno).rellenar();
 				break;
 			case 2:
-				alumno.get(numAlumno).visualizar();
+				this.alumno.get(numAlumno).visualizar();
 				break;
 			case 3:
-				alumno.get(numAlumno).eliminarNota();
+				this.alumno.get(numAlumno).eliminarNota();
 				break;
 			case 4:
-				Main.menu();
+				salir=true;
 			}
-		} while (true);
+		} while (!salir);
 	}
 
 }
