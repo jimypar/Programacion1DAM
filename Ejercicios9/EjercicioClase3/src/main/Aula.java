@@ -3,17 +3,17 @@ package main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Clase {
+public class Aula {
 
 	private Scanner scan = new Scanner(System.in);
 	private String nombre;
-	private ArrayList<Alumno> alumno = new ArrayList<Alumno>();
+	private ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
 	
-	Clase() {
+	Aula() {
 		this.nombre = "";
 		}
 	
-	Clase(String nombre){
+	Aula(String nombre){
 		this.nombre = nombre;
 	}
 
@@ -23,26 +23,27 @@ public class Clase {
 
 	void rellenar() {
 
-		for (int i = 1; i > 0; i++) {
-			System.out.println("Introduce el nombre del alumno " + i);
-			this.alumno.add(new Alumno(scan.next()));
+		boolean continuar=true;
+		do {
+			System.out.println("Introduce el nombre del alumno ");
+			this.alumnos.add(new Alumno(scan.next()));
 
 			System.out.println("Deseas crear otro? (si/no)");
 			String respuesta = scan.next();
 			if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
-				i = -1;
+				continuar = false;
 			}
 
-		}
+		}while(continuar);
 
 	}
 	
 	void visualizar() {
 		System.out.println(this.nombre);
-		for (int i = 0; i < this.alumno.size(); i++) {
+		for (int i = 0; i < this.alumnos.size(); i++) {
 			System.out.println();
 			System.out.print("- Alumno " + (i + 1) + " = ");
-			this.alumno.get(i).visualizar();
+			this.alumnos.get(i).visualizar();
 		}
 		
 	}
@@ -54,11 +55,11 @@ public class Clase {
 			do {
 				System.out.println("Elige un alumno");
 				String busqueda = scan.next();
-				for (int i = 0; i < this.alumno.size(); i++) {
-					if (this.alumno.get(i).getNombre().equals(busqueda)) {
-						numAlumno = i;
-					}
-				}
+				for (Alumno alumno : alumnos) { 
+					if(alumno.getNombre().equalsIgnoreCase(busqueda)) { 
+						numAlumno = alumnos.indexOf(alumno); 
+					} 
+				} 
 			} while (numAlumno == -1);
 
 			System.out.println("Que deseas hacer?");
@@ -69,13 +70,13 @@ public class Clase {
 			int menu = scan.nextInt();
 			switch (menu) {
 			case 1:
-				this.alumno.get(numAlumno).rellenar();
+				this.alumnos.get(numAlumno).rellenar();
 				break;
 			case 2:
-				this.alumno.get(numAlumno).visualizar();
+				this.alumnos.get(numAlumno).visualizar();
 				break;
 			case 3:
-				this.alumno.get(numAlumno).eliminarNota();
+				this.alumnos.get(numAlumno).eliminarNota();
 				break;
 			case 4:
 				salir=true;

@@ -4,60 +4,66 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-	
+
 	private static Scanner scan = new Scanner(System.in);
-	private static ArrayList<Clase> clase = new ArrayList<Clase>();
-	
+	private static ArrayList<Colegio> colegios = new ArrayList<Colegio>();
+
 	public static void main(String[] args) {
-		rellenarClase();
+		rellenarColegio();
 		menu();
 	}
 
-	static void rellenarClase() {
+	static void rellenarColegio() {
 
-		for (int i = 1; i > 0; i++) {
-			System.out.println("Introduce el nombre de la clase " + i);
-			clase.add(new Clase(scan.next()));
+		boolean continuar = true;
+		do {
+			
+			System.out.println("Introduce el nombre del colegio ");
+			String nombre = scan.nextLine();
+			System.out.println("Introduce la direccion del colegio ");
+			String direccion = scan.nextLine();
+			colegios.add(new Colegio(nombre,direccion));
 
-			System.out.println("Deseas crear otra? (si/no)");
+			System.out.println("Deseas crear otro? (si/no)");
 			String respuesta = scan.next();
 			if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
-				i = -1;
+				continuar = false;
 			}
-
-		}
+			scan.nextLine();
+		} while (continuar);
 
 	}
 
 	static void menu() {
 
 		do {
-			int numClase = -1;
+			int numColegio = -1;
 			do {
-				System.out.println("Elige una clase");
+				System.out.println();
+				System.out.println("Elige un colegio");
 				String busqueda = scan.next();
-				for (int i = 0; i < clase.size(); i++) {
-					if (clase.get(i).getNombre().equals(busqueda)) {
-						numClase = i;
+				for (Colegio clase : colegios) {
+					if (clase.getNombre().equalsIgnoreCase(busqueda)) {
+						numColegio = colegios.indexOf(clase);
 					}
 				}
-			} while (numClase == -1);
+			} while (numColegio == -1);
 
 			System.out.println("Que deseas hacer?");
-			System.out.println("1-Rellenar alumno");
-			System.out.println("2-Modificar alumnos");
-			System.out.println("3-Visualizar alumnos");
+			System.out.println("1-Crear clase");
+			System.out.println("2-Modificar clase");
+			System.out.println("3-Visualizar Clases");
 			System.out.println("4-Salir");
 			int menu = scan.nextInt();
 			switch (menu) {
 			case 1:
-				clase.get(numClase).rellenar();
+				colegios.get(numColegio).rellenarAula();
 				break;
 			case 2:
-				clase.get(numClase).menu();
+				colegios.get(numColegio).menu();
 				break;
 			case 3:
-				clase.get(numClase).visualizar();
+				colegios.get(numColegio).visualizar();
 				break;
 			case 4:
 				System.exit(0);
@@ -65,5 +71,5 @@ public class Main {
 			}
 		} while (true);
 
-	}}
-
+	}
+}
