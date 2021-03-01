@@ -1,25 +1,41 @@
 package main;
 
-import java.util.Scanner;
 
 public class Destino {
 
 	private String nombre;
-	private int stock;
+	private int pasajeros;
 	
 	Destino(){
 		this.nombre = "";
-		this.stock = 0;
+		this.pasajeros = 0;
 	}
 	
-	void rellenar() {
-		
-		
-		
+	Destino(String name, int pasajeros) {
+		this.nombre = name;
+		this.pasajeros = pasajeros;
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public int getPasajeros() {
+		return pasajeros;
+	}
+
+	public void setPasajeros(int pasajeros) {
+		this.pasajeros = pasajeros;
+	}
+
 	void visualizar() {
 		
+		System.out.println("Nombre: "+this.nombre);
+		System.out.println("Pasajero: "+this.pasajeros);
 		
 	}
 	

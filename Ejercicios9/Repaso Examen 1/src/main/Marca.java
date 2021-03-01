@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Marca {
 	
-	static int max = 0;
 	private Scanner scan = new Scanner(System.in);
+	
 	private String nombre;
 	private ArrayList<Modelo> modelos;
 	
@@ -19,13 +19,32 @@ public class Marca {
 		this.nombre = nombre;
 	}
 	
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	void rellenar() {
+		
 		boolean continuar = true;
 		do {
-			System.out.println("Introduce nombre de la marca:");
-			this.nombre = scan.nextLine();
+			Modelo modelo = new Modelo();
+			System.out.println("Introduce nombre del modelo: ");
+			String name = scan.next();
+			System.out.println("Introduce stock");
+			int stock = scan.nextInt();
+			modelo.setNombre(name);
+			modelo.setStock(stock);
+			modelos.add(modelo);
+			if (stock > Concesionario.max) {
+				Concesionario.max = stock;
+			}
 			System.out.println("Deseas continuar?");
-			String respuesta = scan.nextLine();
+			String respuesta = scan.next();
 			if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
 				continuar=false;
 			}
@@ -33,12 +52,12 @@ public class Marca {
 		
 	}
 
-	public void visualizar() {
+	void visualizar() {
 		
 		System.out.println("Marca: "+this.nombre);
 		
-		for (Modelo modelo : modelos) {
-			modelo.visualizar();
+		for (Modelo model : modelos) {
+			model.visualizar();
 		}
 		
 	}

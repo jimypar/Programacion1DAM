@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Concesionario {
 	
+	static int max = 0;
 	private Scanner scan = new Scanner(System.in);
 	private String nombre;
 	private String direccion;
@@ -22,21 +23,31 @@ public class Concesionario {
 		this.marcas = new ArrayList<Marca>();
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+
 	void rellenar() {
 		
-		boolean continuar = true;
-		do {
 			System.out.println("Introduce nombre del concesionario:");
-			this.nombre = scan.nextLine();
+			this.nombre = scan.next();
 			System.out.println("Introduce la direccion del concesionario");
-			this.direccion = scan.nextLine();
-			System.out.println("Deseas continuar?");
-			String respuesta = scan.nextLine();
-			if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
-				continuar=false;
-			}
+			this.direccion = scan.next();
 			
-		} while (continuar);
+			boolean continuar = true;
+			do {
+				Marca marca = new Marca();
+				System.out.println("Introduce nombre de la marca:");
+				marca.setNombre(scan.next());
+				marcas.add(marca);
+				marca.rellenar();
+				System.out.println("Deseas continuar?");
+				String respuesta = scan.next();
+				if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
+					continuar=false;
+				}
+				
+			} while (continuar);
 		
 	}
 	
@@ -44,9 +55,9 @@ public class Concesionario {
 		
 		System.out.println("Concesionario: "+this.nombre);
 		System.out.println("Direccion: "+this.direccion);
-		
-		for (Marca marca : marcas) {
-			marca.visualizar();
+		System.out.println("Maximo = "+max);
+		for (Marca marc : marcas) {
+			marc.visualizar();
 		}
 	}
 	
