@@ -12,10 +12,14 @@ public class Main {
 		Hospital hospital2 = new Hospital();
 		
 		hospital1.rellenar();
+		hospital2.rellenar();
+		
+		hospital1.visualizar();
 		hospital2.visualizar();
-
-		hospital1.rellenar();
-		hospital2.visualizar();
+		
+		hospital1.ordenarEspecialidad();
+		hospital1.ordenarEspecialidad();
+		
 
 	}
 
