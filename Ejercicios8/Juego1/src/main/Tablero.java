@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Tablero {
 
 	private Scanner scan = new Scanner(System.in);
-
 	private String tablero1[][] = new String[5][5];
 	private String tablero2[][] = new String[5][5];
 	private int barcoundido;

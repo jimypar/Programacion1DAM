@@ -9,10 +9,12 @@ public class Main {
 		Scanner scan = new Scanner(System.in);
 
 		Tablero tablero = new Tablero();
-		
+		System.out.println("TABLERO VACIO:");
 		tablero.visualizar();
+		System.out.println("TABLERO CON NUMEROS:");
 		tablero.rellenarMapa();
 		tablero.visualizar();
+		System.out.println("TABLERO CON ORO:");
 		tablero.reemplazarOro();
 		do {
 			tablero.visualizar();

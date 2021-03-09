@@ -1,5 +1,6 @@
 package main;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Tablero {
@@ -37,15 +38,22 @@ public class Tablero {
 	}
 	
 	public void rellenar(int jugador) {
-		int x, y;
-
+		int x = 0, y = 0;
+		boolean error = true;
 		do {
-			System.out.println("Introduce x/y");
-			System.out.print("X:");
-			x = scan.nextInt();
-			System.out.print("Y:");
-			y = scan.nextInt();
-		} while ((x < 1 || x > 3) || (y < 1 || y > 3) || tablero[x-1][y-1]!=' ');
+			try {
+				System.out.println("Introduce x/y");
+				System.out.print("X:");
+				x = scan.nextInt();
+				System.out.print("Y:");
+				y = scan.nextInt();
+				error = false;
+			} catch (InputMismatchException e) {
+				System.out.println("Introduce un numero valido");
+				scan.nextLine();
+				error = true;
+			}
+		} while ((x < 1 || x > 3) || (y < 1 || y > 3) || tablero[x-1][y-1]!=' ' || error);
 
 		if (jugador == 1) {
 			tablero[x - 1][y - 1] = 'X';

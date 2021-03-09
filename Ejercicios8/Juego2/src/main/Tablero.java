@@ -1,5 +1,6 @@
 package main;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Tablero {
@@ -18,6 +19,7 @@ public class Tablero {
 	// VISUALIZAR TABLA
 	public void visualizar() {
 		System.out.println();
+		System.out.println("     1    2    3    4    5    6    7    8    9   10");
 		System.out.print("   ");
 		for (int i = 0; i < tablero1.length; i++) {
 			System.out.print("-----");
@@ -183,14 +185,23 @@ public class Tablero {
 	}
 
 	public void buscarOro() {
-		int x, y;
-
-		System.out.println("Introduce las coordenadas (x/y):");
-		System.out.print("X:");
-		x = scan.nextInt();
-		System.out.print("Y:");
-		y = scan.nextInt();
-		if (tablero1[x][y] == "* ") {
+		int x = 0, y = 0;
+		boolean error = true;
+		
+		do {
+			try {
+				System.out.println("Introduce las coordenadas (x/y):");
+				System.out.print("X:");
+				x = scan.nextInt();
+				System.out.print("Y:");
+				y = scan.nextInt();
+				error = false;
+			} catch (InputMismatchException e) {
+				System.out.println("Introduce un nuemero valido");
+				error = true;
+			} 
+		} while (error);
+		if (tablero1[x-1][y-1] == "* ") {
 			System.out.println("Hay oro");
 		} else {
 			System.out.println("No hay oro");
