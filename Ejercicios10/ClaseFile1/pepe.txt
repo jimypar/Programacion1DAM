@@ -1,0 +1,8 @@
+Nombre : a
+Sueldo : 1
+Nombre : b
+Sueldo : 2
+Nombre : c
+Sueldo : 3
+Nombre : d
+Sueldo : 4
