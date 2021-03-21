@@ -109,7 +109,7 @@ public class Archivo {
 			destino.close();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Algo ha fallado");
 		}
 
 	}

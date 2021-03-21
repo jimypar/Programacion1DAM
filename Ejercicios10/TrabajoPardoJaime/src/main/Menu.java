@@ -96,6 +96,7 @@ public class Menu {
 			case 5:
 				System.out.println(mesas.get(numMesa).visualizarMesa());
 				System.out.println("Total: "+mesas.get(numMesa).cuenta()+"€");
+				mesas.get(numMesa).vaciar();
 				break;
 			case 6:
 				menuPrincipal(mesas, carta, log);

@@ -18,7 +18,6 @@ public class Main {
 		ArrayList<Mesa> mesas = null;
 		Menu menu = new Menu();
 		
-
 			System.out.println("RESTAURANTE JAIME PARDO");
 			System.out.println("Introduce el numero de mesas:");
 			int numMesas = scan.nextInt();

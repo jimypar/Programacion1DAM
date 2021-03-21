@@ -115,6 +115,10 @@ public class Mesa {
 
 	// VACIAR MESA
 	public void vaciar() {
+		
+		for (int i = 0; i < platos.size(); i++) {
+			platos.remove(i);
+		}
 
 	}
 
