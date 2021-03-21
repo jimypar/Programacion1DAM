@@ -1,0 +1,26 @@
+1:Paella:20
+2:Arroz con bogavante:18
+3:Chuletas de cordero:14
+4:Solomillo de cerdo:12
+5:Entrecot de ternera:15
+6:Pechuga de pollo:10
+7:Pollo frito con ajos:12
+8:Ensalada normal:7
+9:Ensaladilla rusa:8
+10:Merluza a la plancha:15
+11:Salmon a la plancha:14
+12:Canelones:10
+13:Migas con jamon:9
+14:Sopa de ajo:6
+15:Gambas a la plancha:15
+16:Huevos rotos:12
+17:Esparragos:13
+18:Croquetas:9
+19:Morcilla con patatas:10
+
+20:Agua:1
+21:CocaCola:2
+22:Fanta:2
+23:Cerveza:3
+24:Vino:4
+25:Cafe:1
