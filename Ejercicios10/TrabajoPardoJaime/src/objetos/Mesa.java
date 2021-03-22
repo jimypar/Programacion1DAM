@@ -47,12 +47,12 @@ public class Mesa {
 				System.out.println("(0 para terminar)");
 				System.out.print("Numero de plato:");
 				numPlato = scan.nextInt();
-				if (numPlato > 0 && numPlato < 26) {
+				if (numPlato > 0 && numPlato < 31) {
 					Plato plato = new Plato(numPlato, carta.nombrePlato(numPlato + ""),
 							carta.precioPlato(numPlato + ""));
 					platos.add(plato);
 				}
-			} while (numPlato > 0 && numPlato < 26);
+			} while (numPlato > 0 && numPlato < 31);
 
 		} while (numPlato != 0);
 
@@ -68,8 +68,31 @@ public class Mesa {
 
 	}
 
+	// ENTREGAR PLATOS
+	public void entregarPlato() {
+		int numPlato = -1;
+		do {
+			do {
+				System.out.println();
+				System.out.println("(0 para terminar)");
+				System.out.print("Plato entregado:");
+				numPlato = scan.nextInt();
+				if (numPlato > 0 && numPlato <= platos.size()) {
+					if (platos.get(numPlato - 1).isEntregado()) {
+						System.out.println("Ese plato ya esta entregado");
+					} else {
+						platos.get(numPlato - 1).setEntregado(true);
+						System.out.println("Plato entregado");
+					}
+
+				}
+			} while (numPlato > 0 && numPlato <= platos.size());
+
+		} while (numPlato != 0);
+	}
+
 	// CAMBIAR PLATO
-	public void remplazarPlato(Archivo carta) {
+	public void remplazarPlato(ArrayList<Mesa> mesas, Archivo carta) {
 
 		System.out.println();
 		System.out.print("Que plato quieres remplazar:");
@@ -104,18 +127,45 @@ public class Mesa {
 
 	// DINERO TOTAL
 	public int cuenta() {
-		int totalMesa = 0;
+		boolean continuar = true;
 		for (Plato plato : platos) {
-			totalMesa += plato.getPrecio();
+			if (!plato.isEntregado()) {
+				continuar = false;
+			}
 		}
-		return totalMesa;
-		
+		String respuesta = "";
+		if (!continuar) {
+			do {
+				System.out.println("HAY UN PLATO SIN ENTREGAR");
+				System.out.println("¿Deseas continuar?");
+				respuesta = scan.next();
+				if (respuesta.trim().toLowerCase().equalsIgnoreCase("si")) {
+					int totalMesa = 0;
+					for (Plato plato : platos) {
+						totalMesa += plato.getPrecio();
+					}
+					vaciar();
+					return totalMesa;
+				}
+				if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
+					return 0;
+				}
+			} while (!respuesta.trim().toLowerCase().equalsIgnoreCase("si")
+					|| !respuesta.trim().toLowerCase().equalsIgnoreCase("no"));
+		} else {
+			int totalMesa = 0;
+			for (Plato plato : platos) {
+				totalMesa += plato.getPrecio();
+			}
+			return totalMesa;
+		}
+		return 0;
 
 	}
 
 	// VACIAR MESA
 	public void vaciar() {
-		
+
 		for (int i = 0; i < platos.size(); i++) {
 			platos.remove(i);
 		}
