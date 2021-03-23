@@ -10,8 +10,8 @@ public class Menu {
 	private Scanner scan = new Scanner(System.in);
 
 	public void menuPrincipal(ArrayList<Mesa> mesas, Archivo carta, Archivo log) {
-		
-		do {				
+
+		do {
 			System.out.println();
 			System.out.println("Que deseas hacer?");
 			System.out.println("1-Añadir mesa");
@@ -28,6 +28,7 @@ public class Menu {
 				break;
 			case 3:
 				menuMesa(mesas, carta, log);
+				log.vaciarLog();
 				break;
 			case 4:
 				System.exit(0);
@@ -96,7 +97,7 @@ public class Menu {
 				break;
 			case 4:
 				System.out.println(mesas.get(numMesa).visualizarMesa());
-				mesas.get(numMesa).remplazarPlato(mesas,carta);
+				mesas.get(numMesa).remplazarPlato(mesas, carta);
 				log.hacerLog(mesas);
 				break;
 			case 5:
@@ -106,7 +107,7 @@ public class Menu {
 				break;
 			case 6:
 				System.out.println(mesas.get(numMesa).visualizarMesa());
-				System.out.println("Total: "+mesas.get(numMesa).cuenta()+"€");
+				System.out.println("Total: " + mesas.get(numMesa).cuenta() + "€");
 				log.hacerLog(mesas);
 				break;
 			case 7:

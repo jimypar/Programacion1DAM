@@ -58,8 +58,15 @@ public class Mesa {
 
 	}
 
-	// VER PLATOS
+	/**
+	 * Visualiza datos del ArrayList de platos.
+	 * 
+	 * @see <a href="https://docs.oracle.com/javase/7/docs/api/"> Documentacion de Java </a>
+	 * @return strMesa
+	 */
 	public String visualizarMesa() {
+		ordenarPlatos();
+		
 		String strMesa = "";
 		for (int i = 0; i < platos.size(); i++) {
 			strMesa += "  Plato " + (i + 1) + ": " + platos.get(i).toString() + "\n";
@@ -75,7 +82,7 @@ public class Mesa {
 			do {
 				System.out.println();
 				System.out.println("(0 para terminar)");
-				System.out.print("Plato entregado:");
+				System.out.print("Plato a entregar:");
 				numPlato = scan.nextInt();
 				if (numPlato > 0 && numPlato <= platos.size()) {
 					if (platos.get(numPlato - 1).isEntregado()) {
@@ -168,6 +175,20 @@ public class Mesa {
 
 		for (int i = 0; i < platos.size(); i++) {
 			platos.remove(i);
+		}
+
+	}
+
+	public void ordenarPlatos() {
+
+		for (int i = 0; i < platos.size() - 1; i++) {
+			for (int j = i + 1; j < platos.size(); j++) {
+				if (platos.get(i).getNumeroPlato() > platos.get(j).getNumeroPlato()) {
+					Plato temp = platos.get(i);
+					platos.set(i, platos.get(j));
+					platos.set(j, temp);
+				}
+			}
 		}
 
 	}

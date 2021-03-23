@@ -10,17 +10,45 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class Archivo {
+/**
+ * Clase Archivo
+ * 
+ * @author Jaime
+ * @version
+ * @since 1.8 @
+ */
 
+public class Archivo {
 
 	private String nombreArchivo;
 
+	/**
+	 * Inicializa los atributos de la clase
+	 * 
+	 * @param nombreArchivo Ruta completa de archivo
+	 */
 	public Archivo() {
 		this.nombreArchivo = "";
 	}
 
+	/**
+	 * Inicializa los atributos de la clase
+	 * 
+	 * @param nombreArchivo Ruta completa del archivo
+	 */
 	public Archivo(String nombreArchivo) {
 		this.nombreArchivo = nombreArchivo;
+	}
+
+	public void crearArchivo() {
+		File f = new File(this.nombreArchivo);
+		if (!f.exists()) {
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				System.out.println("No se ha podido crear el archivo");
+			}
+		}
 	}
 
 	public String nombrePlato(String busqueda) {
@@ -91,21 +119,20 @@ public class Archivo {
 
 	public void hacerLog(ArrayList<Mesa> mesas) {
 
-		
 		PrintWriter destino;
 
 		try {
-			destino = new PrintWriter(new FileWriter(this.nombreArchivo));
+			destino = new PrintWriter(new FileWriter(this.nombreArchivo, false));
+
 			for (Mesa mesa : mesas) {
-				destino.println("Mesa "+mesa.getNumero()+":");
+				destino.println("Mesa " + mesa.getNumero() + ":");
 				if (mesa.visualizarMesa().equals("")) {
 					destino.println("Sin pedir");
-				}
-				else {
-				destino.println(mesa.visualizarMesa());
+				} else {
+					destino.println(mesa.visualizarMesa());
 				}
 			}
-			
+
 			destino.close();
 
 		} catch (IOException e) {
@@ -115,7 +142,7 @@ public class Archivo {
 	}
 
 	public void verLog(ArrayList<Mesa> mesas) {
-		
+
 		try {
 			BufferedReader file = new BufferedReader(new FileReader(this.nombreArchivo));
 
@@ -132,18 +159,19 @@ public class Archivo {
 			System.out.println("Algo ha fallado");
 		}
 	}
-	
+
 	public void vaciarLog() {
-		
+
 		try {
 			BufferedWriter file = new BufferedWriter(new FileWriter(this.nombreArchivo));
 			file.write("");
 			file.close();
-			
+
 		} catch (FileNotFoundException e) {
 			System.out.println("No se ha encontrado el archivo");
 		} catch (IOException e) {
 			System.out.println("Algo ha fallado");
 		}
 	}
+
 }
