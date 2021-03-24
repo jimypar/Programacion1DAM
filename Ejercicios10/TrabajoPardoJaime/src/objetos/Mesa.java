@@ -1,33 +1,43 @@
 package objetos;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+/**
+ * Clase Mesa
+ * 
+ * @author Jaime
+ * @version
+ * @since 1.8
+ */
 
 public class Mesa {
 
 	private int numeroMesa;
-	private int precioMesa;
+	private double precioMesa;
 	private ArrayList<Plato> platos = null;
 	private Scanner scan = new Scanner(System.in);
-	
+
 	/**
 	 * Inicializa los atributos de la clase
 	 * 
 	 * @param numeroMesa Numero identificativo de la mesa
 	 * @param precioMesa Precio total de los platos de la mesa
-	 * @param platos ArrayList de los platos de la mesa
+	 * @param platos     ArrayList de los platos de la mesa
 	 */
 	public Mesa() {
 		this.numeroMesa = 0;
 		this.precioMesa = 0;
 		this.platos = new ArrayList<Plato>();
 	}
+
 	/**
 	 * Inicializa los atributos de la clase
 	 * 
 	 * @param numeroMesa Numero identificativo de la mesa
 	 * @param precioMesa Precio total de los platos de la mesa
-	 * @param platos ArrayList de los platos de la mesa
+	 * @param platos     ArrayList de los platos de la mesa
 	 */
 	public Mesa(int numero) {
 		this.numeroMesa = numero;
@@ -43,7 +53,7 @@ public class Mesa {
 		this.numeroMesa = numero;
 	}
 
-	public int getPrecioMesa() {
+	public double getPrecioMesa() {
 		return precioMesa;
 	}
 
@@ -56,14 +66,27 @@ public class Mesa {
 		int numPlato = -1;
 		do {
 			do {
-				System.out.println();
-				System.out.println("(0 para terminar)");
-				System.out.print("Numero de plato:");
-				numPlato = scan.nextInt();
+				boolean error = false;
+				do {
+					try {
+						System.out.println();
+						System.out.println("(0 para terminar)");
+						System.out.print("Numero de plato:");
+						numPlato = scan.nextInt();
+						error = false;
+					} catch (InputMismatchException e) {
+						error = true;
+						scan.nextLine();
+					}
+				} while (error);
+
 				if (numPlato > 0 && numPlato < 31) {
 					Plato plato = new Plato(numPlato, carta.nombrePlato(numPlato + ""),
 							carta.precioPlato(numPlato + ""));
 					platos.add(plato);
+					this.precioMesa += carta.precioPlato(numPlato + "");
+				} else {
+					System.out.println("No existe ese plato");
 				}
 			} while (numPlato > 0 && numPlato < 31);
 
@@ -74,12 +97,14 @@ public class Mesa {
 	/**
 	 * Visualiza datos del ArrayList de platos.
 	 * 
-	 * @see <a href="https://docs.oracle.com/javase/7/docs/api/"> Documentacion de Java </a>
+	 * @see <a href="https://docs.oracle.com/javase/7/docs/api/"> Documentacion de
+	 *      Java </a>
 	 * @return strMesa
+	 * 
 	 */
 	public String visualizarMesa() {
 		ordenarPlatos();
-		
+
 		String strMesa = "";
 		for (int i = 0; i < platos.size(); i++) {
 			strMesa += "  Plato " + (i + 1) + ": " + platos.get(i).toString() + "\n";
@@ -93,10 +118,20 @@ public class Mesa {
 		int numPlato = -1;
 		do {
 			do {
-				System.out.println();
-				System.out.println("(0 para terminar)");
-				System.out.print("Plato a entregar:");
-				numPlato = scan.nextInt();
+				boolean error = false;
+				do {
+					try {
+						System.out.println();
+						System.out.println("(0 para terminar)");
+						System.out.print("Plato a entregar:");
+						numPlato = scan.nextInt();
+						error = false;
+					} catch (InputMismatchException e) {
+						error = true;
+						scan.nextLine();
+					}
+				} while (error);
+
 				if (numPlato > 0 && numPlato <= platos.size()) {
 					if (platos.get(numPlato - 1).isEntregado()) {
 						System.out.println("Ese plato ya esta entregado");
@@ -114,20 +149,47 @@ public class Mesa {
 	// CAMBIAR PLATO
 	public void remplazarPlato(ArrayList<Mesa> mesas, Archivo carta) {
 
+		
+		int numPlato = 0;
+		boolean error = false;
+		do {
+			try {
 		System.out.println();
 		System.out.print("Que plato quieres remplazar:");
-		int numPlato = scan.nextInt();
+		numPlato = scan.nextInt();
+		error = false;
+			} catch (InputMismatchException e) {
+				error = true;
+				scan.nextLine();
+			}
+		} while (error);
+		
+		
 		if (numPlato > 0 && numPlato <= platos.size()) {
 			do {
-				System.out.print("Numero del plato nuevo:");
-				int numPlatoNuevo = scan.nextInt();
-				if (numPlato > 0 && numPlato < 26) {
+				int numPlatoNuevo = 0;
+				error = false;
+				do {
+					try {
+						System.out.print("Numero del plato nuevo:");
+						numPlatoNuevo = scan.nextInt();
+						error = false;
+					} catch (InputMismatchException e) {
+						error = true;
+						scan.nextLine();
+					}
+				} while (error);
+
+				if (numPlato > 0 && numPlato < 31) {
+					this.precioMesa -= platos.get(numPlato - 1).getPrecio();
+					this.precioMesa += carta.precioPlato(numPlatoNuevo + "");
 					platos.get(numPlato - 1).setNumeroPlato(numPlatoNuevo);
 					platos.get(numPlato - 1).setNombrePlato(carta.nombrePlato(numPlatoNuevo + ""));
-					platos.get(numPlato - 1).setNumeroPlato(carta.precioPlato(numPlatoNuevo + ""));
+					platos.get(numPlato - 1).setPrecio(carta.precioPlato(numPlatoNuevo + ""));
+					platos.get(numPlato - 1).setEntregado(false);
 					System.out.println("Se ha remplazado el plato.");
 				}
-			} while (numPlato <= 0 || numPlato >= 26);
+			} while (numPlato <= 0 || numPlato >= 31);
 
 		}
 
@@ -135,18 +197,40 @@ public class Mesa {
 
 	// ELIMINAR UN PLATO
 	public void eliminarPlato() {
+		int numPlato = 0;
+		boolean error = false;
+		do {
+			try {
+				System.out.println();
+				System.out.print("Que plato quieres eliminar:");
+				numPlato = scan.nextInt();
+				error = false;
+			} catch (InputMismatchException e) {
+				error = true;
+				scan.nextLine();
+			}
+		} while (error);
 
-		System.out.println();
-		System.out.print("Que plato quieres eliminar:");
-		int numPlato = scan.nextInt();
 		if (numPlato > 0 && numPlato <= platos.size()) {
+			this.precioMesa -= platos.get(numPlato - 1).getPrecio();
 			platos.remove(numPlato - 1);
 		}
 
 	}
 
 	// DINERO TOTAL
-	public int cuenta() {
+	/**
+	 * Compreba si todos los platos estan entregados y si es asi hace la suma de sus
+	 * precios
+	 * 
+	 * @param numeroMesa Numero identificativo de la mesa
+	 * @param precioMesa Precio total de los platos de la mesa
+	 * @param platos     ArrayList de los platos de la mesa
+	 * 
+	 * @return int precio de todos los platos de la mesa
+	 */
+
+	public double cuenta() {
 		boolean continuar = true;
 		for (Plato plato : platos) {
 			if (!plato.isEntregado()) {
@@ -160,12 +244,7 @@ public class Mesa {
 				System.out.println("¿Deseas continuar?");
 				respuesta = scan.next();
 				if (respuesta.trim().toLowerCase().equalsIgnoreCase("si")) {
-					int totalMesa = 0;
-					for (Plato plato : platos) {
-						totalMesa += plato.getPrecio();
-					}
-					vaciar();
-					return totalMesa;
+					return this.precioMesa;
 				}
 				if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
 					return 0;
@@ -173,11 +252,7 @@ public class Mesa {
 			} while (!respuesta.trim().toLowerCase().equalsIgnoreCase("si")
 					|| !respuesta.trim().toLowerCase().equalsIgnoreCase("no"));
 		} else {
-			int totalMesa = 0;
-			for (Plato plato : platos) {
-				totalMesa += plato.getPrecio();
-			}
-			return totalMesa;
+			return this.precioMesa;
 		}
 		return 0;
 
@@ -186,9 +261,8 @@ public class Mesa {
 	// VACIAR MESA
 	public void vaciar() {
 
-		for (int i = 0; i < platos.size(); i++) {
-			platos.remove(i);
-		}
+		platos = new ArrayList<Plato>();
+		this.precioMesa = 0;
 
 	}
 

@@ -1,10 +1,18 @@
 package objetos;
 
+/**
+ * Clase Plato
+ * 
+ * @author Jaime
+ * @version
+ * @since 1.8
+ */
+
 public class Plato {
 
 	private int numeroPlato;
 	private String nombrePlato;
-	private int precio;
+	private double precio;
 	private boolean entregado;
 	/**
 	 * Inicializa los atributos de la clase Plato
@@ -25,8 +33,8 @@ public class Plato {
 	 * 
 	 * @param numeroPlato Numero identificativo del plato en el menu
 	 * @param nombrePlato Nombre completo del plato
-	 * @param precio precio del plato
-	 * @param entregado Indica si esta entregado o no
+	 * @param precio int del precio del plato
+	 * @param entregado booleano que indica si esta entregado o no
 	 */
 	public Plato(int numeroPlato, String nombrePlato, int precio) {
 		this.numeroPlato = numeroPlato;
@@ -63,7 +71,7 @@ public class Plato {
 		return nombrePlato;
 	}
 
-	public int getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
