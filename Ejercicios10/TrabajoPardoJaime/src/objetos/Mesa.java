@@ -9,13 +9,26 @@ public class Mesa {
 	private int precioMesa;
 	private ArrayList<Plato> platos = null;
 	private Scanner scan = new Scanner(System.in);
-
+	
+	/**
+	 * Inicializa los atributos de la clase
+	 * 
+	 * @param numeroMesa Numero identificativo de la mesa
+	 * @param precioMesa Precio total de los platos de la mesa
+	 * @param platos ArrayList de los platos de la mesa
+	 */
 	public Mesa() {
 		this.numeroMesa = 0;
 		this.precioMesa = 0;
 		this.platos = new ArrayList<Plato>();
 	}
-
+	/**
+	 * Inicializa los atributos de la clase
+	 * 
+	 * @param numeroMesa Numero identificativo de la mesa
+	 * @param precioMesa Precio total de los platos de la mesa
+	 * @param platos ArrayList de los platos de la mesa
+	 */
 	public Mesa(int numero) {
 		this.numeroMesa = numero;
 		this.precioMesa = 0;

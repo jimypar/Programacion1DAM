@@ -6,14 +6,28 @@ public class Plato {
 	private String nombrePlato;
 	private int precio;
 	private boolean entregado;
-
+	/**
+	 * Inicializa los atributos de la clase Plato
+	 * 
+	 * @param numeroPlato Numero identificativo del plato en el menu
+	 * @param nombrePlato Nombre completo del plato
+	 * @param precio precio del plato
+	 * @param entregado Indica si esta entregado o no
+	 */
 	public Plato() {
 		this.numeroPlato = 0;
 		this.nombrePlato = "";
 		this.precio = 0;
 		this.entregado = false;
 	}
-
+	/**
+	 * Inicializa los atributos de la clase Plato
+	 * 
+	 * @param numeroPlato Numero identificativo del plato en el menu
+	 * @param nombrePlato Nombre completo del plato
+	 * @param precio precio del plato
+	 * @param entregado Indica si esta entregado o no
+	 */
 	public Plato(int numeroPlato, String nombrePlato, int precio) {
 		this.numeroPlato = numeroPlato;
 		this.nombrePlato = nombrePlato;

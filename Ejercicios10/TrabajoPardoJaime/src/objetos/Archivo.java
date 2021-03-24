@@ -23,7 +23,7 @@ public class Archivo {
 	private String nombreArchivo;
 
 	/**
-	 * Inicializa los atributos de la clase
+	 * Inicializa los atributos de la clase Archivo
 	 * 
 	 * @param nombreArchivo Ruta completa de archivo
 	 */
@@ -32,7 +32,7 @@ public class Archivo {
 	}
 
 	/**
-	 * Inicializa los atributos de la clase
+	 * Inicializa los atributos de la clase Archivo
 	 * 
 	 * @param nombreArchivo Ruta completa del archivo
 	 */
