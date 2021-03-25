@@ -130,7 +130,7 @@ public class Menu {
 				break;
 			case 4:
 				System.out.println(mesas.get(numMesa).visualizarMesa());
-				mesas.get(numMesa).remplazarPlato(mesas, carta);
+				mesas.get(numMesa).remplazarPlato(carta);
 				log.hacerLog(mesas);
 				break;
 			case 5:

@@ -61,7 +61,13 @@ public class Mesa {
 		this.precioMesa = precioMesa;
 	}
 
-	// AÑADIR PLATO
+	/**
+	 * El metodo permite añadir un elemento al array buscando un numero en el
+	 * archivo carta y introduciendo esos parametros al plato nuevo
+	 * 
+	 * @param Archivo carta es el archivo txt que se lee para sacar los platos y sus
+	 *                precios
+	 */
 	public void añadirPlato(Archivo carta) {
 		int numPlato = -1;
 		do {
@@ -95,11 +101,10 @@ public class Mesa {
 	}
 
 	/**
-	 * Visualiza datos del ArrayList de platos.
+	 * Visualiza datos del ArrayList de platos y previamente los ordena cone el
+	 * metodo ordenarPlatos()
 	 * 
-	 * @see <a href="https://docs.oracle.com/javase/7/docs/api/"> Documentacion de
-	 *      Java </a>
-	 * @return strMesa
+	 * @return strMesa String que contiene el toString de cada Plato de la mesa
 	 * 
 	 */
 	public String visualizarMesa() {
@@ -113,7 +118,11 @@ public class Mesa {
 
 	}
 
-	// ENTREGAR PLATOS
+	/**
+	 * Comprueba si el plato esta entregado y si no lo esta lo entrega
+	 * 
+	 * 
+	 */
 	public void entregarPlato() {
 		int numPlato = -1;
 		do {
@@ -146,25 +155,28 @@ public class Mesa {
 		} while (numPlato != 0);
 	}
 
-	// CAMBIAR PLATO
-	public void remplazarPlato(ArrayList<Mesa> mesas, Archivo carta) {
+	/**
+	 * El metodo busca un plato en la mesa y te permite remplazar por otro que lo
+	 * busca en la carta y sustituye el precio.
+	 * 
+	 *	@param Archivo carta es el archivo txt que se lee para sacar los platos y sus precios
+	 */
+	public void remplazarPlato(Archivo carta) {
 
-		
 		int numPlato = 0;
 		boolean error = false;
 		do {
 			try {
-		System.out.println();
-		System.out.print("Que plato quieres remplazar:");
-		numPlato = scan.nextInt();
-		error = false;
+				System.out.println();
+				System.out.print("Que plato quieres remplazar:");
+				numPlato = scan.nextInt();
+				error = false;
 			} catch (InputMismatchException e) {
 				error = true;
 				scan.nextLine();
 			}
 		} while (error);
-		
-		
+
 		if (numPlato > 0 && numPlato <= platos.size()) {
 			do {
 				int numPlatoNuevo = 0;
@@ -195,7 +207,10 @@ public class Mesa {
 
 	}
 
-	// ELIMINAR UN PLATO
+	/**
+	 * Metodo que permite eliminar un plato y sus datos del ArrayList
+	 * 
+	 */
 	public void eliminarPlato() {
 		int numPlato = 0;
 		boolean error = false;
@@ -218,7 +233,6 @@ public class Mesa {
 
 	}
 
-	// DINERO TOTAL
 	/**
 	 * Compreba si todos los platos estan entregados y si es asi hace la suma de sus
 	 * precios
@@ -229,7 +243,6 @@ public class Mesa {
 	 * 
 	 * @return int precio de todos los platos de la mesa
 	 */
-
 	public double cuenta() {
 		boolean continuar = true;
 		for (Plato plato : platos) {
@@ -258,7 +271,10 @@ public class Mesa {
 
 	}
 
-	// VACIAR MESA
+	/**
+	 * Metodo que vacia el ArrayList de platos entero
+	 * 
+	 */
 	public void vaciar() {
 
 		platos = new ArrayList<Plato>();
@@ -266,6 +282,11 @@ public class Mesa {
 
 	}
 
+	/**
+	 * Ordenar el ArrayList de platos segun el numero que ocupan en
+	 * la carta
+	 * 
+	 */
 	public void ordenarPlatos() {
 
 		for (int i = 0; i < platos.size() - 1; i++) {

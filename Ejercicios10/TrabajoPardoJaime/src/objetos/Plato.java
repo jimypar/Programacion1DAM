@@ -78,7 +78,12 @@ public class Plato {
 	public String toString() {
 		return "\n   -" + nombrePlato + "\n   -" + precio + "€\n   -" + estadoPlato();
 	}
-
+	
+	/**
+	 * Devuelve un String segun sea el metodo isEntregado()
+	 * 
+	 * @return String si esta entregado o no esta entregado
+	 */
 	public String estadoPlato() {
 		if (entregado) {
 			return "Entregado";

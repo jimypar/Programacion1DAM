@@ -39,7 +39,11 @@ public class Archivo {
 	public Archivo(String nombreArchivo) {
 		this.nombreArchivo = nombreArchivo;
 	}
-
+	
+	/**
+	 * Comprueba si el archivo existe y si no lo crea vacio
+	 * (solo funciona con log)
+	 */
 	public void crearArchivo() {
 		File f = new File(this.nombreArchivo);
 		if (!f.exists()) {
@@ -51,6 +55,13 @@ public class Archivo {
 		}
 	}
 
+	/**
+	 * Comprueba si existe el archivo y busca en el un parametro y devuelve 
+	 * el nombre del plato que tiene ese numero en la carta
+	 * 
+	 * @param busqueda String que se introduce para busca en el archivo un numero
+	 * @return String nombre del plato
+	 */
 	public String nombrePlato(String busqueda) {
 
 		File f = new File(this.nombreArchivo);
@@ -83,7 +94,13 @@ public class Archivo {
 		return "No existe";
 
 	}
-
+	/**
+	 * Comprueba si existe el archivo y busca en el un parametro y devuelve 
+	 * el precio del plato que tiene ese numero en la carta
+	 * 
+	 * @param busqueda String que se introduce para busca en el archivo un numero
+	 * @return int precio del plato
+	 */
 	public int precioPlato(String busqueda) {
 
 		File f = new File(this.nombreArchivo);
