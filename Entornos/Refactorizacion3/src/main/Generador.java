@@ -1,48 +1,51 @@
 package main;
 
+//importe
 import java.util.Scanner;
 
 public class Generador {
+	
+	static Scanner scan = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+		//Cambiamo nombre de scanner
+		
+		//Pregunta longitud antes del menu
+		System.out.println("Introduce la longitud de la cadena: ");		
+		int longitud = scan.nextInt();
+		
 		System.out.println("Programa que genera passwords de la longitud indicada, y del rango de caracteres");
 		System.out.println("1 - Caracteres desde A - Z");
 		System.out.println("2 - Numeros del 0 al 9");
 		System.out.println("3 - Letras y caracteres especiales");
 		System.out.println("4 - Letras, numeros y caracteres especiales");
-		System.out.println("Introduce la longitud de la cadena: ");
-		int longitud = scanner.nextInt();
 		System.out.println("Elige tipo de password: ");
-		int opcion = scanner.nextInt();
+		int opcion = scan.nextInt();
 		String password = "";
+		char letra;
+		int numero;
 		switch (opcion) {
 		case 1:
 			for (int i = 0; i < longitud; i++) {
-				char letra1;
-				letra1 = (char) ((Math.random() * 26) + 65);
-				password += letra1;
+				letra = (char) ((Math.random() * 26) + 65);
+				password += letra;
 			}
 			break;
 		case 2:
 			for (int i = 0; i < longitud; i++) {
-				int numero2;
-				numero2 = (int) (Math.random() * 10);
-				password += numero2;
+				numero = (int) (Math.random() * 10);
+				password += numero;
 			}
 			break;
 		case 3:
 			for (int i = 0; i < longitud; i++) {
-				int n;
-				n = (int) (Math.random() * 2);
+				int n = (int) (Math.random() * 2);
 				if (n == 1) {
-					char letra3;
-					letra3 = (char) ((Math.random() * 26) + 65);
-					password += letra3;
+					letra = (char) ((Math.random() * 26) + 65);
+					password += letra;
 				} else {
-					char caracter3;
-					caracter3 = (char) ((Math.random() * 15) + 33);
-					password += caracter3;
+					letra = (char) ((Math.random() * 15) + 33);
+					password += letra;
 				}
 			}
 			break;
@@ -51,24 +54,33 @@ public class Generador {
 				int n;
 				n = (int) (Math.random() * 3);
 				if (n == 1) {
-					char letra4;
-					letra4 = (char) ((Math.random() * 26) + 65);
-					password += letra4;
+					letra = (char) ((Math.random() * 26) + 65);
+					password += letra;
 				} else if (n == 2) {
-					char caracter4;
-					caracter4 = (char) ((Math.random() * 15) + 33);
-					password += caracter4;
+					letra = (char) ((Math.random() * 15) + 33);
+					password += letra;
 				} else {
-					int numero4;
-					numero4 = (int) (Math.random() * 10);
-					password += numero4;
+					numero = (int) (Math.random() * 10);
+					password += numero;
 				}
 			}
 			break;
 		}
 
 		System.out.println(password);
-		scanner.close();
+		scan.close();
+	}
+	
+	public static void menu() {
+				
+		System.out.println("Programa que genera passwords de la longitud indicada, y del rango de caracteres");
+		System.out.println("1 - Caracteres desde A - Z");
+		System.out.println("2 - Numeros del 0 al 9");
+		System.out.println("3 - Letras y caracteres especiales");
+		System.out.println("4 - Letras, numeros y caracteres especiales");
+		System.out.println("Elige tipo de password: ");
+		int opcion = scan.nextInt();
+		
 	}
 
 }

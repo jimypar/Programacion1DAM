@@ -36,11 +36,11 @@ public class Refactor {
 	static double recorrerArray(int[] vector) {
 		// cambiado el nombre del double
 		double totalNotas = 0;
-		// cambiado el iterador de a por i
-		for (int i = 0; i < 10; i++) {
-			totalNotas = totalNotas + vector[i];
+		// cambiado el iterador de a por i y el magic number por la variable
+		for (int i = 0; i < vector.length; i++) {
+			totalNotas += vector[i];
 		}
-		return totalNotas / 10;
+		return totalNotas / vector.length;
 	}
 
 }
