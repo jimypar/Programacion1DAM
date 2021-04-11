@@ -118,10 +118,11 @@ public class Colegio {
 					System.out.println();
 					System.out.println("Que deseas hacer?");
 					System.out.println("1-Buscar un nombre");
-					System.out.println("2-Remplazar nota de un modulo");
-					System.out.println("3-Visualizar colegio");
-					System.out.println("4-Calcular alumno con mas nota");
-					System.out.println("5-Salir");
+					System.out.println("2-Remplazar nombre modulo");
+					System.out.println("3-Remplazar nota de un modulo");
+					System.out.println("4-Visualizar colegio");
+					System.out.println("5-Calcular alumno con mas nota");
+					System.out.println("6-Salir");
 					menu = scan.nextInt();
 					error = false;
 				} catch (InputMismatchException e) {
@@ -135,15 +136,18 @@ public class Colegio {
 				raf.buscarRAF(this.nombre);
 				break;
 			case 2:
-				raf.remplazarRAF(this.nombre);
+				raf.remplazarModuloRAF(this.nombre);
 				break;
 			case 3:
-				raf.visualizarRAF(this.nombre);
+				raf.remplazarNotaRAF(this.nombre);
 				break;
 			case 4:
-				raf.alumnoConMasNota(this.nombre);
+				raf.visualizarRAF(this.nombre);
 				break;
 			case 5:
+				raf.alumnoConMasNota(this.nombre);
+				break;
+			case 6:
 				raf.borrarRAF(this.nombre);
 				System.exit(0);
 

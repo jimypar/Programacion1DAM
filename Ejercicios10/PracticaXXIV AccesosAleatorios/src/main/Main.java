@@ -12,5 +12,6 @@ public class Main {
 		colegio.menu();
 			
 	}
+	
 
 }

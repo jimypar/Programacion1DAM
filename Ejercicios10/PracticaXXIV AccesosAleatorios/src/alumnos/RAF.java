@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RAF {
@@ -106,7 +107,65 @@ public class RAF {
 		}
 	}
 
-	public void remplazarRAF(String nombreArchivo) {
+	public void remplazarModuloRAF(String nombreArchivo) {
+
+		System.out.println("Que alumno quieres modificar?:");
+		String buscarNombre = scan.next();
+
+		try {
+			RandomAccessFile f = new RandomAccessFile(nombreArchivo, "rw");
+
+			boolean fin = false;
+			do {
+				try {
+					String nombre = f.readUTF();
+					if (nombre.trim().toLowerCase().equalsIgnoreCase(buscarNombre.trim().toLowerCase())) {
+						System.out.println("Que modulo quieres remplazar?:");
+						String buscarModulo = scan.next();
+						f.readUTF();
+						f.readByte();
+						int cantidadModulos = f.readInt();
+						for (int i = 0; i < cantidadModulos; i++) {
+							String modulo = f.readUTF();
+							if (modulo.trim().toLowerCase().equalsIgnoreCase(buscarModulo)) {
+								f.seek(f.getFilePointer() - 12);
+								String nuevoModulo="";
+								do {
+									System.out.println("Introduce el nuevo nombre de modulo:");
+									nuevoModulo = scan.next();
+								} while (nuevoModulo.length() > 10);
+								nuevoModulo = formatear(nuevoModulo, 10);
+								f.writeUTF(nuevoModulo);
+							}
+							f.readFloat();
+						}
+					}
+					f.readUTF();
+					f.readByte();
+					int cantidadModulos = f.readInt();
+					for (int i = 0; i < cantidadModulos; i++) {
+						f.readUTF();
+						f.readFloat();
+					}
+				} catch (EOFException e) {
+					fin = true;
+				}
+			} while (!fin);
+			f.close();
+		} catch (IOException e) {
+			System.out.println("Algo ha fallado");
+		}
+
+	}
+
+	private String formatear(String nombre, int longitud) {
+		for (int j = nombre.length(); j < longitud; j++) {
+			nombre += " ";
+		}
+		return nombre;
+	}
+
+	public void remplazarNotaRAF(String nombreArchivo) {
 
 		System.out.println("Que alumno quieres modificar?:");
 		String buscarNombre = scan.next();
@@ -128,7 +187,22 @@ public class RAF {
 							String modulo = f.readUTF();
 							if (modulo.trim().toLowerCase().equalsIgnoreCase(buscarModulo)) {
 								System.out.println("Que nota quieres poner:");
-								Float nota = scan.nextFloat();
+								float nota = 0;
+								boolean fin2 = false;
+								do {
+									try {
+										System.out.println("Nota");
+										nota = scan.nextFloat();
+										if (nota > 0 || nota < 11) {
+											fin2 = true;
+										}
+									} catch (InputMismatchException e) {
+										System.out.println("Introduce del 1 al 10");
+										fin2 = false;
+										scan.next();
+									}
+								} while (!fin2);
+
 								f.writeFloat(nota);
 								System.out.println("Nota cambiada");
 							}
@@ -157,7 +231,7 @@ public class RAF {
 
 		String alumnoMax = "";
 		float notaMax = 0;
-		
+
 		try {
 			RandomAccessFile f = new RandomAccessFile(nombreArchivo, "rw");
 
@@ -173,11 +247,11 @@ public class RAF {
 						f.readUTF();
 						notaAlumno += f.readFloat();
 					}
-					if ((notaAlumno/cantidadModulos)>notaMax) {
+					if ((notaAlumno / cantidadModulos) > notaMax) {
 						alumnoMax = nombre;
-						notaMax = notaAlumno/cantidadModulos;
+						notaMax = notaAlumno / cantidadModulos;
 					}
-					
+
 				} catch (EOFException e) {
 					fin = true;
 				}
@@ -186,9 +260,9 @@ public class RAF {
 		} catch (IOException e1) {
 			System.out.println("Algo ha fallado");
 		}
-		
-		System.out.println("El alumno con mas nota media es: "+alumnoMax+"\n con una media de: "+notaMax);
-		
+
+		System.out.println("El alumno con mas nota media es: " + alumnoMax + "\n con una media de: " + notaMax);
+
 	}
 
 	public void borrarRAF(String nombreArchivo) {
