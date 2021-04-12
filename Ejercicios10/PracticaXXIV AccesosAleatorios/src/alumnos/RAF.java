@@ -12,6 +12,51 @@ public class RAF {
 
 	private Scanner scan = new Scanner(System.in);
 
+	public void comprobarRAF(ArrayList<Alumno> alumnos, String nombreArchivo) {
+		File f = new File(nombreArchivo);
+		if (f.exists()) {
+			System.out.println("El colegio " + nombreArchivo + " ya tiene un registro");
+			boolean fin = false;
+			do {
+				System.out.println("Deseas añadir datos a este?");
+				String respuesta = scan.next();
+				if (respuesta.trim().toLowerCase().equalsIgnoreCase("si")) {
+					addRAF(alumnos, nombreArchivo);
+					fin=true;
+				}
+				if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
+					borrarRAF(nombreArchivo);
+					crearRAF(alumnos, nombreArchivo);
+					fin=true;
+				} 
+			} while (!fin);
+		}
+	}
+	
+	public void addRAF(ArrayList<Alumno> alumnos, String nombreArchivo) {
+
+		try {
+			RandomAccessFile f = new RandomAccessFile(nombreArchivo, "rw");
+
+			// LEER
+			f.seek(f.length());
+			for (Alumno alumno : alumnos) {
+				f.writeUTF(alumno.getNombre());
+				f.writeUTF(alumno.getCiclo());
+				f.writeByte(alumno.getCurso());
+				f.writeInt(alumno.getCantidadModulos());
+				for (int i = 0; i < alumno.getCantidadModulos(); i++) {
+					f.writeUTF(alumno.getNombreModulo(i));
+					f.writeFloat(alumno.getNotaModulo(i));
+				}
+			}
+			f.close();
+		} catch (IOException e) {
+			System.out.println("Algo ha fallado");
+		}
+
+	}
+
 	public void crearRAF(ArrayList<Alumno> alumnos, String nombreArchivo) {
 
 		try {
@@ -129,7 +174,7 @@ public class RAF {
 							String modulo = f.readUTF();
 							if (modulo.trim().toLowerCase().equalsIgnoreCase(buscarModulo)) {
 								f.seek(f.getFilePointer() - 12);
-								String nuevoModulo="";
+								String nuevoModulo = "";
 								do {
 									System.out.println("Introduce el nuevo nombre de modulo:");
 									nuevoModulo = scan.next();
@@ -193,7 +238,7 @@ public class RAF {
 									try {
 										System.out.println("Nota");
 										nota = scan.nextFloat();
-										if (nota > 0 || nota < 11) {
+										if (nota > 0 && nota <= 10) {
 											fin2 = true;
 										}
 									} catch (InputMismatchException e) {
@@ -267,8 +312,13 @@ public class RAF {
 
 	public void borrarRAF(String nombreArchivo) {
 
-		File file = new File(nombreArchivo);
-		file.delete();
+		System.out.println("Deseas guardar antes de salir?");
+		String respuesta = scan.next();
+		if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
+			File file = new File(nombreArchivo);
+			file.delete();
+		}
+		
 
 	}
 

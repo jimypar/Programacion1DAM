@@ -49,7 +49,7 @@ public class Alumno {
 		}
 	}
 
-	public void rellenar() {
+	public void rellenarModulos() {
 
 		for (int i = 1; i <= this.cantidadModulos; i++) {
 
@@ -59,6 +59,9 @@ public class Alumno {
 			do {
 				System.out.println("Nombre del modulo:");
 				nombre = scan.next();
+				if (nombre.length()>10) {
+					System.out.println("El nombre de modulo es demasiado largo"); 
+				}
 			} while (nombre.length() > 10);
 			nombre = formatear(nombre, 10);
 

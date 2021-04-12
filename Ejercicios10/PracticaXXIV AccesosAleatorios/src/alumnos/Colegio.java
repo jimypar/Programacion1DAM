@@ -30,6 +30,9 @@ public class Colegio {
 			do {
 				System.out.println("Nombre de alumno:");
 				nombre = scan.next();
+				if (nombre.length()>20) {
+					System.out.println("El nombre es demasiado largo"); 
+				}
 			} while (nombre.length() > 20);
 			nombre = formatear(nombre, 20);
 
@@ -39,6 +42,9 @@ public class Colegio {
 			do {
 				System.out.println("Nombre del ciclo:");
 				ciclo = scan.next();
+				if (ciclo.length()>15) {
+					System.out.println("El nombre de ciclo es demasiado largo"); 
+				}
 			} while (ciclo.length() > 15);
 			ciclo = formatear(ciclo, 15);
 
@@ -78,14 +84,14 @@ public class Colegio {
 
 			Alumno alumno = new Alumno(nombre, ciclo, curso, cantidadModulo);
 			alumnos.add(alumno);
-			alumno.rellenar();
+			alumno.rellenarModulos();
 
 			System.out.println("Deseas poner otro alumno?");
 			respuesta = scan.next();
 
 		} while (!respuesta.trim().equals("no"));
 
-		raf.crearRAF(this.alumnos, this.nombre);
+		raf.comprobarRAF(alumnos,this.nombre);
 		raf.visualizarRAF(this.nombre);
 
 	}
