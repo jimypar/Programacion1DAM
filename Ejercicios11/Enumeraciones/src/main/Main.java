@@ -6,6 +6,8 @@ public class Main {
 		
 		DiasDeLaSemana nombre=DiasDeLaSemana.MARTES;
 				
+		System.out.println(nombre);
+		
 		System.out.println("dias de la semana");
 		for (DiasDeLaSemana dia : DiasDeLaSemana.values()) {
 			System.out.println(dia);
