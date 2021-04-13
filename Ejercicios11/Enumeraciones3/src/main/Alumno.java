@@ -1,22 +1,28 @@
 package main;
 
-import java.util.Scanner;
-
 public class Alumno {
 
 	private String nombre;
 	private String apellidos;
-	private String ciclo;
+	private Ciclos ciclo;
+	
+	public Alumno(String nombre, String apellidos, Ciclos ciclo) {
+		super();
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.ciclo = ciclo;
+	}
 
-	void rellenarAlumno() {
-		Scanner scan = new Scanner(System.in);
+	
+	
+	void visualizarAlumno() {
 		
-		System.out.println("Introduce el nombre: ");
-		this.nombre = scan.next();
-		System.out.println("Introduce el apellido: ");
-		this.apellidos = scan.next();
-		System.out.println("Introduce el ciclo: (ASI,DAM o MARKETING) ");
-		
+		System.out.println("Alumno : "+this.nombre);
+		System.out.println("Apellido : "+this.apellidos);
+		System.out.println("Ciclo : "+this.ciclo);
+		System.out.println("   -alumnos: "+this.ciclo.getNumAlumnos());
+		System.out.println("   -asignaturas: "+this.ciclo.getNumAsignaturas());
+
 		
 	}
 	

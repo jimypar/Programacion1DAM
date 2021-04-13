@@ -14,12 +14,12 @@ public enum Ciclos {
 		this.numAsignaturas = numAsignaturas;
 	}
 
-	public int getCodigo() {
+	public int getNumAlumnos() {
 		return numAlumnos;
 	}
 
-	public int getDescripcion() {
+	public int getNumAsignaturas() {
 		return numAsignaturas;
 	}
-
+	
 }

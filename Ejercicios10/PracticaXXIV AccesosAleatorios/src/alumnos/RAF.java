@@ -31,6 +31,9 @@ public class RAF {
 				} 
 			} while (!fin);
 		}
+		else {
+			crearRAF(alumnos, nombreArchivo);
+		}
 	}
 	
 	public void addRAF(ArrayList<Alumno> alumnos, String nombreArchivo) {
@@ -310,15 +313,20 @@ public class RAF {
 
 	}
 
-	public void borrarRAF(String nombreArchivo) {
-
+	public void salirRAF(String nombreArchivo) {
+		
 		System.out.println("Deseas guardar antes de salir?");
 		String respuesta = scan.next();
 		if (respuesta.trim().toLowerCase().equalsIgnoreCase("no")) {
-			File file = new File(nombreArchivo);
-			file.delete();
+			borrarRAF(nombreArchivo);
 		}
 		
+	}
+	
+	public void borrarRAF(String nombreArchivo) {
+
+		File file = new File(nombreArchivo);
+		file.delete();		
 
 	}
 

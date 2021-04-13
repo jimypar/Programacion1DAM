@@ -17,36 +17,58 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+
+		ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+
+		rellenarAlumnos(alumnos);
+		visualizarAlumnos(alumnos);
+
+	}
+
+	
+
+	private static void rellenarAlumnos(ArrayList<Alumno> alumnos) {
 		
-		ArrayList<Alumno> alumno = new ArrayList<Alumno>();
 		
 		
-
-		Ciclos miCiclo = Ciclos.DAM;
-
-		System.out.println(miCiclo);
-
-		System.out.println("Ciclos:");
-		for (Ciclos ciclo : Ciclos.values()) {
-			System.out.println(ciclo.toString());
-		}
-		System.out.println();
-
 		Scanner scan = new Scanner(System.in);
-		boolean fin = false;
-		do {
-			try {
-				System.out.println("Elige un ciclo de la lista:");
-				String ciclo = scan.nextLine();
-				miCiclo = Ciclos.valueOf(ciclo.toUpperCase());
-				fin = true;
-			} catch (IllegalArgumentException e) {
-				fin = false;
-			}
-		} while (!fin);
-		System.out.println("El ciclo elegido es " + miCiclo.toString());
-		scan.close();
 
+		boolean end=false;
+		do {
+			System.out.println("Introduce el nombre: (*)");
+			String nombre = scan.next();
+			if (nombre.equalsIgnoreCase("*")) {
+				end = true;
+			} else {
+				System.out.println("Introduce el apellido: ");
+				String apellido = scan.next();
+				boolean fin = false;
+				do {
+					try {
+						System.out.println("Introduce el ciclo: (ASI,DAM o MARKETING) ");
+						String miCiclo = scan.next();
+						Ciclos ciclo = Ciclos.valueOf(miCiclo.toUpperCase());
+						Alumno alumno = new Alumno(nombre,apellido,ciclo);
+						alumnos.add(alumno);
+						fin = true;
+					} catch (IllegalArgumentException e) {
+						fin = false;
+					}
+				} while (!fin);
+			} 
+		} while (!end);
+		
+		
+		scan.close();
+		
+	}
+	
+	private static void visualizarAlumnos(ArrayList<Alumno> alumnos) {
+		
+		for (Alumno alumno : alumnos) {
+			alumno.visualizarAlumno();
+		}
+		
 	}
 
 }

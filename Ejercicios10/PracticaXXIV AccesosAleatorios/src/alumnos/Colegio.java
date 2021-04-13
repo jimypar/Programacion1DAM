@@ -154,7 +154,7 @@ public class Colegio {
 				raf.alumnoConMasNota(this.nombre);
 				break;
 			case 6:
-				raf.borrarRAF(this.nombre);
+				raf.salirRAF(this.nombre);
 				System.exit(0);
 
 			}
