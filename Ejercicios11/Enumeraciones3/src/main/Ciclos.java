@@ -2,9 +2,7 @@ package main;
 
 public enum Ciclos {
 
-	ASI(20,5), 
-	DAM(25,4),
-	MARKETING(30,7);
+	ASI(20, 5), DAM(25, 4), MARKETING(30, 7);
 
 	private int numAlumnos;
 	private int numAsignaturas;
@@ -21,5 +19,5 @@ public enum Ciclos {
 	public int getNumAsignaturas() {
 		return numAsignaturas;
 	}
-	
+
 }

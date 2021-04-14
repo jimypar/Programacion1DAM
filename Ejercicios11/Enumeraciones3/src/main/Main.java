@@ -7,7 +7,9 @@ import java.util.Scanner;
 // Diseña la siguiente clase enum que almacene la información
 //(número de alumnos y número de asignaturas) de los ciclos de ASI, DAM y MARKETING.
 //enum ciclos{
-// ASI(20, 5), DAM(25,4), MARQKETING(30,7);
+// ASI(20, 5),
+// DAM(25,4), 
+// MARQKETING(30,7);
 //}
 //Un alumno contiene la siguiente información: nombre, apellidos y ciclo (clase enumerada).
 //Rellenar una lista de alumnos, y a continuación, mostrar toda la información de la lista. Por cada
@@ -25,15 +27,11 @@ public class Main {
 
 	}
 
-	
-
 	private static void rellenarAlumnos(ArrayList<Alumno> alumnos) {
-		
-		
-		
+
 		Scanner scan = new Scanner(System.in);
 
-		boolean end=false;
+		boolean end = false;
 		do {
 			System.out.println("Introduce el nombre: (*)");
 			String nombre = scan.next();
@@ -48,27 +46,26 @@ public class Main {
 						System.out.println("Introduce el ciclo: (ASI,DAM o MARKETING) ");
 						String miCiclo = scan.next();
 						Ciclos ciclo = Ciclos.valueOf(miCiclo.toUpperCase());
-						Alumno alumno = new Alumno(nombre,apellido,ciclo);
+						Alumno alumno = new Alumno(nombre, apellido, ciclo);
 						alumnos.add(alumno);
 						fin = true;
 					} catch (IllegalArgumentException e) {
 						fin = false;
 					}
 				} while (!fin);
-			} 
+			}
 		} while (!end);
-		
-		
+
 		scan.close();
-		
+
 	}
-	
+
 	private static void visualizarAlumnos(ArrayList<Alumno> alumnos) {
-		
+
 		for (Alumno alumno : alumnos) {
 			alumno.visualizarAlumno();
 		}
-		
+
 	}
 
 }
