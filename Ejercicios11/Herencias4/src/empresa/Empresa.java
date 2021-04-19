@@ -90,12 +90,12 @@ public class Empresa {
 
 	}
 
-	private String formatear(String nombre, int i) {
+	private String formatear(String nombre, int longitud) {
 
-		if (nombre.length() > i) {
-			return nombre.substring(0, i);
+		if (nombre.length() > longitud) {
+			return nombre.substring(0, longitud);
 		} else {
-			for (int j = nombre.length(); j < i; j++) {
+			for (int i = nombre.length(); i < longitud; i++) {
 				nombre += " ";
 			}
 			return nombre;
