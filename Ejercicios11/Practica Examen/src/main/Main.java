@@ -6,9 +6,9 @@ import tienda.Tienda;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static Scanner scan = new Scanner(System.in);
 
-		Scanner scan = new Scanner(System.in);
+	public static void main(String[] args) {
 
 		System.out.println("Nombre tienda:");
 		String nombreTienda = scan.next();
@@ -20,7 +20,6 @@ public class Main {
 	}
 
 	private static void menu(Tienda tienda) {
-		Scanner scan = new Scanner(System.in);
 
 		do {
 			System.out.println();
@@ -41,6 +40,7 @@ public class Main {
 				break;
 			case 3:
 				tienda.crearRAF();
+				tienda.modificarRAF();
 				tienda.visualizarRAF();
 				break;
 			case 4:

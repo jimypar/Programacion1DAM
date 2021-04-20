@@ -1,6 +1,6 @@
 package tienda;
 
-import java.util.Scanner;
+import main.Main;
 
 public class Aparato {
 
@@ -33,17 +33,16 @@ public class Aparato {
 	}
 
 	public void rellenarAparato() {
-		Scanner scan = new Scanner(System.in);
 
 		boolean error = true;
 		do {
 			try {
 				System.out.println("Codigo de aparato:");
-				this.codigo = scan.nextInt();
+				this.codigo = Main.scan.nextInt();
 				error = false;
 			} catch (Exception e) {
 				System.out.println("Introduce un numero");
-				scan.next();
+				Main.scan.next();
 				error = true;
 			}
 		} while (error);
@@ -51,11 +50,11 @@ public class Aparato {
 		do {
 			try {
 				System.out.println("PVP:");
-				this.pvp = scan.nextFloat();
+				this.pvp = Main.scan.nextFloat();
 				error = false;
 			} catch (Exception e) {
 				System.out.println("Introduce un numero");
-				scan.next();
+				Main.scan.next();
 				error = true;
 			}
 		} while (error);
@@ -64,11 +63,11 @@ public class Aparato {
 		do {
 			try {
 				System.out.println("Stock:");
-				this.stock = scan.nextInt();
+				this.stock = Main.scan.nextInt();
 				error = false;
 			} catch (Exception e) {
 				System.out.println("Introduce un numero");
-				scan.next();
+				Main.scan.next();
 				error = true;
 			}
 		} while (error);

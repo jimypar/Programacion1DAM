@@ -1,6 +1,6 @@
 package tienda;
 
-import java.util.Scanner;
+import main.Main;
 
 public class Televisor extends Aparato {
 
@@ -20,20 +20,7 @@ public class Televisor extends Aparato {
 		return tipo;
 	}
 
-	public int getCodigo() {
-		return super.getCodigo();
-	}
-
-	public float getPvp() {
-		return super.getPvp();
-	}
-
-	public int getStock() {
-		return super.getStock();
-	}
-
 	public void rellenar() {
-		Scanner scan = new Scanner(System.in);
 
 		super.rellenarAparato();
 
@@ -49,7 +36,7 @@ public class Televisor extends Aparato {
 					System.out.println("    Codigo: " + t.getCodigo());
 				}
 
-				String unTipo = scan.next();
+				String unTipo = Main.scan.next();
 				this.tipo = Tipos.valueOf(unTipo.toUpperCase());
 				fin = true;
 			} catch (IllegalArgumentException e) {
@@ -66,6 +53,8 @@ public class Televisor extends Aparato {
 		System.out.println("    Descripcion: " + this.tipo.getCodigo());
 		System.out.println("    Porcentaje: " + this.tipo.getDescripcion());
 		System.out.println("    Codigo: " + this.tipo.getPorcentaje());
+		System.out.println("    Precio total: "
+				+ (super.getPvp() + (super.getPvp() * (this.tipo.getPorcentaje() / 100))));
 	}
 
 }
