@@ -1,18 +1,33 @@
-package rs;
+package main;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
-public class rs_desplazamiento {
-	/**** Columnas del ResultSet ****/
-	static String col1 = "codigo";
-	static String col2 = "nombre";
+public class Main {
 
 	public static void main(String[] args) {
-		Connection con = null;
+		FileInputStream f = null;
+		try {
+			f = new FileInputStream("config/datos.properties");
+		} catch (FileNotFoundException e1) {
+			System.out.println("No se ha encontrado el archivo de configuracion");
+		}
+		
+		Properties p = new Properties();
+		try {
+			p.load(f);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		Connection conexion = null;
 		try {
 
 			/*** Driver ****/
@@ -20,19 +35,20 @@ public class rs_desplazamiento {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			/*** Conexión BBDD ***/
+		
 
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3307/prueba","root", "");
+			conexion = DriverManager.getConnection("jdbc:mysql://"+p.getProperty("server.name")+":"
+			+p.getProperty("server.port")+"/"+p.getProperty("server.database"),p.getProperty("server.username"),p.getProperty("server.password"));
 
 			/***** Definir sentencia y ejecutarla ********/
 
-			String orden_SQL = "SELECT " + col1 + "," + col2 + " FROM cliente ORDER BY " + col2;
-			Statement sentencia = con.createStatement();
+			String orden_SQL = "SELECT * FROM pelicula";
+			Statement sentencia = conexion.createStatement();
 			ResultSet rs = sentencia.executeQuery(orden_SQL);
-
 			/*** Recorrer fila a fila todo el resultado ****/
 
 			while (rs.next()) {
-				System.out.println(rs.getString(col1) + ", " + rs.getString(col2));
+				System.out.println(rs.getString("titulo"));
 			}
 
 			sentencia.close();
@@ -45,7 +61,7 @@ public class rs_desplazamiento {
 		/*** Haya excepción o no, tengo que cerrar la conexión ***/
 
 		finally {
-			cerrar_conexion(con);
+			cerrar_conexion(conexion);
 		}
 	}
 

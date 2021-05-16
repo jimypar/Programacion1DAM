@@ -43,7 +43,8 @@ public class EAsalariado extends Empleado {
 
 	@Override
 	void imprimir() {
-		// TODO Auto-generated method stub
+		
+		
 
 	}
 
