@@ -49,7 +49,7 @@ public class Nevera extends Aparato {
 
 	}
 
-	public void visualizar() {
+	void visualizar() {
 
 		super.visualizarAparato();
 		System.out.println("Descripcion: " + this.descripcion);

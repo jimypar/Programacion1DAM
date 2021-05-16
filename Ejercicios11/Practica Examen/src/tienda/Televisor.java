@@ -46,7 +46,7 @@ public class Televisor extends Aparato {
 
 	}
 
-	public void visualizar() {
+	void visualizar() {
 
 		super.visualizarAparato();
 		System.out.println("Tipo:" + this.tipo.toString());

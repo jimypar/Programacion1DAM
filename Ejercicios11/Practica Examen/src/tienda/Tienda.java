@@ -11,18 +11,15 @@ public class Tienda {
 
 	private String nombreTienda;
 	private ArrayList<Aparato> aparatos;
-	private ArrayList<Televisor> televisores;
 
 	public Tienda() {
 		this.nombreTienda = "";
 		this.aparatos = new ArrayList<Aparato>();
-		this.televisores = new ArrayList<Televisor>();
 	}
 
 	public Tienda(String nombreTienda) {
 		this.nombreTienda = nombreTienda;
 		this.aparatos = new ArrayList<Aparato>();
-		this.televisores = new ArrayList<Televisor>();
 	}
 
 	public void rellenarTienda() {
@@ -44,7 +41,7 @@ public class Tienda {
 		}
 
 	}
-	
+
 	public void visualizarTienda() {
 
 		System.out.println("**TIENDA " + this.nombreTienda + "**");
@@ -66,12 +63,19 @@ public class Tienda {
 		try {
 			RandomAccessFile f = new RandomAccessFile("tvplasma", "rw");
 
-			for (Televisor televisor : televisores) {
-				if (televisor.getTipo().toString().equalsIgnoreCase("PLASMA")) {
-					f.writeInt(televisor.getCodigo());
-					f.writeFloat(televisor.getPvp());
-					f.writeUTF(formatear(televisor.getTipo().getDescripcion(), 50));
+			for (Aparato aparato : aparatos) {
+				if (aparato.getClass().getSimpleName().equals("Televisor")) {
+					Televisor televisor = new Televisor();
+					televisor = (Televisor) aparato;
+
+					if (televisor.getTipo().toString().equals("PLASMA")) {
+						f.writeInt(televisor.getCodigo());
+						f.writeFloat(televisor.getPvp());
+						f.writeUTF(formatear(televisor.getTipo().getDescripcion(), 50));
+					}
+
 				}
+
 			}
 
 			f.close();
@@ -151,8 +155,6 @@ public class Tienda {
 		}
 
 	}
-
-	
 
 //	public void visualizarTienda() {
 //
