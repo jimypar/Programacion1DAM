@@ -24,20 +24,6 @@ public class Database {
 
 	static Scanner scan = new Scanner(System.in);
 
-	public static void crearBase() {
-
-		String orden_sql = "CREATE DATABASE IF NOT EXISTS restaurantejaime";
-
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307", "root", "");
-				PreparedStatement st = conn.prepareStatement(orden_sql)) {
-			st.execute();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
 	public static Properties usarBase() {
 
 		FileInputStream f = null;
@@ -54,7 +40,23 @@ public class Database {
 			e1.printStackTrace();
 		}
 
+		crearBase(p);
+
 		return p;
+
+	}
+
+	public static void crearBase(Properties p) {
+
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://" + p.getProperty("server.name") + "/",
+				p.getProperty("server.username"), p.getProperty("server.password"));
+				Statement stmt = conn.createStatement()) {
+			String orden_sql = "CREATE DATABASE IF NOT EXISTS restaurantejaime";
+			stmt.executeUpdate(orden_sql);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -174,17 +176,31 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void delete(Connection c) {
+
+	public static void deleteData(Connection c, int numeroMesa, int numPlato) {
 
 		try {
-			String orden_SQL = "DELETE FROM ALUMNOS WHERE nombre=?;";
+			String orden_SQL = "DELETE mesa_plato.* FROM mesa_plato WHERE mesa=? AND pedido=?";
 			PreparedStatement sentencia = c.prepareStatement(orden_SQL);
-			sentencia.setString(1,"");
+			sentencia.setInt(1, numeroMesa);
+			sentencia.setInt(2, numPlato);
+			sentencia.execute();
+
+			sentencia.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void deleteMesa(Connection c, int numeroMesa) {
+
+		try {
+			String orden_SQL = "DELETE mesa_plato.* FROM mesa_plato WHERE mesa=?";
+			PreparedStatement sentencia = c.prepareStatement(orden_SQL);
+			sentencia.setInt(1, numeroMesa);
 			sentencia.executeUpdate();
 
 			sentencia.close();
-			System.out.println("El alumno se ha eliminado");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -247,13 +263,28 @@ public class Database {
 
 	}
 
-	public static void consultaMesa() {
+	public static void consultaPlato(Connection c, int max, int min) {
 
-	}
+		try {
 
-	public static void platoMesa(Connection c) {
-		
-		
+			String orden_SQL = "SELECT * FROM mesa_plato WHERE pedido<" + max + " AND pedido>" + min
+					+ " ORDER BY mesa;";
+			Statement sentencia = c.createStatement();
+			ResultSet rs = sentencia.executeQuery(orden_SQL);
+
+			while (rs.next()) {
+				System.out.println();
+				System.out.println("Mesa" + rs.getInt(1));
+				System.out.println("Plato: " + getNombrePlato(rs.getInt(2)));
+				System.out.println("Precio: " + getPrecioPlato(rs.getInt(2)));
+				System.out.println("Extra: " + rs.getString(3));
+			}
+
+			sentencia.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -267,10 +298,6 @@ public class Database {
 		} catch (SQLException e) {
 			System.out.println("No se ha podido cerrar la conexion");
 		}
-	}
-
-	public static void consultaBebida(Connection c) {
-
 	}
 
 }

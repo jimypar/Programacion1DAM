@@ -71,7 +71,8 @@ public class Mesa {
 	/**
 	 * El metodo permite añadir un elemento al array buscando un numero en el
 	 * archivo carta y introduciendo esos parametros al plato nuevo
-	 * @param c 
+	 * 
+	 * @param c
 	 * 
 	 * @param Archivo carta es el archivo txt que se lee para sacar los platos y sus
 	 *                precios
@@ -97,25 +98,29 @@ public class Mesa {
 				if (numPlato > 0 && numPlato < 6) {
 					Bebida bebida = new Bebida(numPlato);
 					bebida.rellenar();
-					Database.addData(c, this.numeroMesa, numPlato,bebida.getSize().toString());
+					Database.addData(c, this.numeroMesa, numPlato, bebida.getSize().toString());
+					this.precioMesa += bebida.calcularPrecio();
 					platos.add(bebida);
 				}
 				if (numPlato > 5 && numPlato < 15) {
 					Carne carne = new Carne(numPlato);
 					carne.rellenar();
-					Database.addData(c, this.numeroMesa, numPlato,carne.getCoccion().toString());
+					Database.addData(c, this.numeroMesa, numPlato, carne.getCoccion().toString());
+					this.precioMesa += carne.calcularPrecio();
 					platos.add(carne);
 				}
 				if (numPlato > 14 && numPlato < 25) {
 					Pescado pescado = new Pescado(numPlato);
 					pescado.rellenar();
-					Database.addData(c, this.numeroMesa, numPlato,pescado.getAcompanamiento().toString());
+					Database.addData(c, this.numeroMesa, numPlato, pescado.getAcompanamiento().toString());
+					this.precioMesa += pescado.calcularPrecio();
 					platos.add(pescado);
 				}
 				if (numPlato > 24 && numPlato < 31) {
 					Postre postre = new Postre(numPlato);
 					postre.rellenar();
 					Database.addData(c, this.numeroMesa, numPlato, postre.tieneAzucar());
+					this.precioMesa += postre.calcularPrecio();
 					platos.add(postre);
 				}
 			} while (numPlato > 0 && numPlato < 31);
@@ -182,7 +187,7 @@ public class Mesa {
 	 * Metodo que permite eliminar un plato y sus datos del ArrayList
 	 * 
 	 */
-	public void eliminarPlato() {
+	public void eliminarPlato(Connection c) {
 		int numPlato = 0;
 		boolean error = false;
 		do {
@@ -198,13 +203,14 @@ public class Mesa {
 		} while (error);
 
 		if (numPlato > 0 && numPlato <= platos.size()) {
-			this.precioMesa -= platos.get(numPlato - 1).getPrecio();
+			this.precioMesa -= platos.get(numPlato - 1).calcularPrecio();
 			platos.remove(numPlato - 1);
+			Database.deleteData(c, this.numeroMesa, numPlato);
 		}
 
 	}
 
-	public void remplazarPlato() {
+	public void remplazarPlato(Connection c) {
 
 		int numPlato = 0;
 		boolean error = false;
@@ -222,10 +228,10 @@ public class Mesa {
 
 		if (numPlato > 0 && numPlato <= platos.size()) {
 			do {
-				
-				this.precioMesa -= platos.get(numPlato - 1).getPrecio();
+				Database.deleteData(c, this.numeroMesa,this.platos.get(numPlato - 1).getNumeroPlato());
+				this.precioMesa -= platos.get(numPlato - 1).calcularPrecio();
 				platos.remove(numPlato - 1);
-				
+
 				int numPlatoNuevo = 0;
 				error = false;
 				do {
@@ -246,21 +252,29 @@ public class Mesa {
 							if (numPlatoNuevo > 0 && numPlatoNuevo < 6) {
 								Bebida bebida = new Bebida(numPlatoNuevo);
 								bebida.rellenar();
+								Database.addData(c, this.numeroMesa, numPlato, bebida.getSize().toString());
+								this.precioMesa += bebida.calcularPrecio();
 								platos.add(bebida);
 							}
 							if (numPlatoNuevo > 5 && numPlatoNuevo < 15) {
 								Carne carne = new Carne(numPlatoNuevo);
 								carne.rellenar();
+								Database.addData(c, this.numeroMesa, numPlato, carne.getCoccion().toString());
+								this.precioMesa += carne.calcularPrecio();
 								platos.add(carne);
 							}
 							if (numPlatoNuevo > 14 && numPlatoNuevo < 25) {
 								Pescado pescado = new Pescado(numPlatoNuevo);
 								pescado.rellenar();
+								Database.addData(c, this.numeroMesa, numPlato, pescado.getAcompanamiento().toString());
+								this.precioMesa += pescado.calcularPrecio();
 								platos.add(pescado);
 							}
 							if (numPlatoNuevo > 24 && numPlatoNuevo < 31) {
 								Postre postre = new Postre(numPlatoNuevo);
 								postre.rellenar();
+								Database.addData(c, this.numeroMesa, numPlato, postre.getNombrePlato().toString());
+								this.precioMesa += postre.calcularPrecio();
 								platos.add(postre);
 							}
 						} while (numPlato < 1 && numPlato > 30);
@@ -313,7 +327,7 @@ public class Mesa {
 				}
 			} while (!respuesta.trim().toLowerCase().equalsIgnoreCase("si")
 					|| !respuesta.trim().toLowerCase().equalsIgnoreCase("no"));
-		} else {
+		} else {			
 			return this.precioMesa;
 		}
 		return 0;
@@ -323,11 +337,14 @@ public class Mesa {
 	/**
 	 * Metodo que vacia el ArrayList de platos entero
 	 * 
+	 * @param c
+	 * 
 	 */
-	public void vaciar() {
+	public void vaciar(Connection c) {
 
 		platos = new ArrayList<Plato>();
 		this.precioMesa = 0;
+		Database.deleteMesa(c, this.numeroMesa);
 
 	}
 

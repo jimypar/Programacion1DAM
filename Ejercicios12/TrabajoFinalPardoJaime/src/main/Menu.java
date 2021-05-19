@@ -16,7 +16,6 @@ public class Menu {
 
 	public void crearDatabase() {
 
-		Database.crearBase();
 		Database.deleteAll(c);
 		Database.createTable(c);
 
@@ -58,6 +57,7 @@ public class Menu {
 				menuBase(mesas);
 				break;
 			case 5:
+				Database.deleteAll(c);
 				Database.cerrar_conexion(c);
 				System.exit(0);
 			}
@@ -144,18 +144,18 @@ public class Menu {
 				break;
 			case 4:
 				System.out.println(mesas.get(numMesa).visualizarMesa());
-				mesas.get(numMesa).remplazarPlato();
+				mesas.get(numMesa).remplazarPlato(c);
 				break;
 			case 5:
 				System.out.println(mesas.get(numMesa).visualizarMesa());
-				mesas.get(numMesa).eliminarPlato();
+				mesas.get(numMesa).eliminarPlato(c);
 				break;
 			case 6:
 				System.out.println(mesas.get(numMesa).visualizarMesa());
 				System.out.println("Total: " + mesas.get(numMesa).cuenta() + "€");
 				break;
 			case 7:
-				mesas.get(numMesa).vaciar();
+				mesas.get(numMesa).vaciar(c);
 				break;
 			case 8:
 				menuPrincipal(mesas);
@@ -178,12 +178,11 @@ public class Menu {
 					System.out.println();
 					System.out.println("Que deseas hacer?");
 					System.out.println("1-Consultar menu");
-					System.out.println("2-Consultar platos mesa");
-					System.out.println("3-Consultar bebidas");
-					System.out.println("4-Consultar carne");
-					System.out.println("5-Consultar pescado");
-					System.out.println("6-Consultar postres");
-					System.out.println("7-Salir");
+					System.out.println("2-Consultar bebidas");
+					System.out.println("3-Consultar carne");
+					System.out.println("4-Consultar pescado");
+					System.out.println("5-Consultar postres");
+					System.out.println("6-Salir");
 					menu = scan.nextInt();
 					error = false;
 				} catch (InputMismatchException e) {
@@ -197,16 +196,16 @@ public class Menu {
 				Database.visualizarMenu(this.c);
 				break;
 			case 2:
-				Database.consultaBebida(this.c);
+				Database.consultaPlato(this.c, 5, 0);
 				break;
 			case 3:
-				
+				Database.consultaPlato(this.c, 15, 5);
 				break;
 			case 4:
-
+				Database.consultaPlato(this.c, 25, 14);
 				break;
 			case 5:
-
+				Database.consultaPlato(this.c, 31, 24);
 				break;
 			case 6:
 				menuPrincipal(mesas);
