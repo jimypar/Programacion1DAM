@@ -11,13 +11,18 @@ import objetos.Mesa;
 public class Menu {
 
 	private Scanner scan = new Scanner(System.in);
+	private Properties p = Database.usarBase();
+	private Connection c = Database.crearConexion(p);
+
+	public void crearDatabase() {
+
+		Database.crearBase();
+		Database.deleteAll(c);
+		Database.createTable(c);
+
+	}
 
 	public void menuPrincipal(ArrayList<Mesa> mesas) {
-		
-		Database.crearBase();
-		Properties p = Database.usarBase();
-		Connection c = Database.crearConexion(p);
-		Database.createTable(c);
 
 		do {
 			int menu = 0;
@@ -29,6 +34,7 @@ public class Menu {
 					System.out.println("1-Añadir mesa");
 					System.out.println("2-Ver mesas");
 					System.out.println("3-Modificar mesa");
+					System.out.println("4-Consultar Base Datos");
 					System.out.println("5-Salir");
 					menu = scan.nextInt();
 					error = false;
@@ -46,9 +52,12 @@ public class Menu {
 				visualizar(mesas);
 				break;
 			case 3:
-				menuMesa(mesas,c);
+				menuMesa(mesas);
 				break;
 			case 4:
+				menuBase(mesas);
+				break;
+			case 5:
 				Database.cerrar_conexion(c);
 				System.exit(0);
 			}
@@ -63,15 +72,15 @@ public class Menu {
 	}
 
 	private void visualizar(ArrayList<Mesa> mesas) {
-		
+
 		for (Mesa mesa : mesas) {
-			System.out.println("Mesa " +mesa.getNumero());
+			System.out.println("Mesa " + mesa.getNumero());
 			System.out.println(mesa.visualizarMesa());
 		}
-		
+
 	}
 
-	public void menuMesa(ArrayList<Mesa> mesas, Connection c) {
+	public void menuMesa(ArrayList<Mesa> mesas) {
 
 		int numMesa = -1;
 		do {
@@ -124,7 +133,7 @@ public class Menu {
 
 			switch (menu) {
 			case 1:
-				mesas.get(numMesa).añadirPlato(c);
+				mesas.get(numMesa).añadirPlato(this.c);
 				break;
 			case 2:
 				System.out.println(mesas.get(numMesa).visualizarMesa());
@@ -149,6 +158,57 @@ public class Menu {
 				mesas.get(numMesa).vaciar();
 				break;
 			case 8:
+				menuPrincipal(mesas);
+				break;
+			default:
+				break;
+			}
+
+		} while (true);
+
+	}
+
+	private void menuBase(ArrayList<Mesa> mesas) {
+
+		do {
+			int menu = 0;
+			boolean error = false;
+			do {
+				try {
+					System.out.println();
+					System.out.println("Que deseas hacer?");
+					System.out.println("1-Consultar menu");
+					System.out.println("2-Consultar platos mesa");
+					System.out.println("3-Consultar bebidas");
+					System.out.println("4-Consultar carne");
+					System.out.println("5-Consultar pescado");
+					System.out.println("6-Consultar postres");
+					System.out.println("7-Salir");
+					menu = scan.nextInt();
+					error = false;
+				} catch (InputMismatchException e) {
+					error = true;
+					scan.nextLine();
+				}
+			} while (error);
+
+			switch (menu) {
+			case 1:
+				Database.visualizarMenu(this.c);
+				break;
+			case 2:
+				Database.consultaBebida(this.c);
+				break;
+			case 3:
+				
+				break;
+			case 4:
+
+				break;
+			case 5:
+
+				break;
+			case 6:
 				menuPrincipal(mesas);
 				break;
 			default:

@@ -28,7 +28,7 @@ public class Database {
 
 		String orden_sql = "CREATE DATABASE IF NOT EXISTS restaurantejaime";
 
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost", "root", "");
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307", "root", "");
 				PreparedStatement st = conn.prepareStatement(orden_sql)) {
 			st.execute();
 
@@ -83,9 +83,11 @@ public class Database {
 
 	public static void createTable(Connection c) {
 
+		crearMenu(c);
+
 		try {
 			String orden1 = "DROP TABLE IF EXISTS mesa_plato";
-			String orden2 = "CREATE TABLE mesa_plato(mesa int,pedido int,extra varchar(25));";
+			String orden2 = "CREATE TABLE mesa_plato(mesa int,pedido int,extra varchar(25),FOREIGN KEY (pedido) references menu(id));";
 			PreparedStatement sentencia = c.prepareStatement(orden1);
 			sentencia.execute(orden1);
 			sentencia = c.prepareStatement(orden2);
@@ -96,25 +98,21 @@ public class Database {
 			e.printStackTrace();
 		}
 
-		crearMenu(c);
-
 	}
 
 	private static void crearMenu(Connection c) {
 
 		try {
-			String orden1 = "DROP TABLE IF EXISTS menu";
-			String orden2 = "CREATE TABLE menu(id int,nombre varchar(25),precio int);";
-			String orden3 = "INSERT INTO menu VALUES (1,'Agua',1),(2,'CocaCola',2),(3,'Fanta',2),(4,'Cerveza',3),(5,'Vino',4),(6,'Paella',20),(7,'Arroz con bogavante',18),(8,'Chuletas de cordero',14),(9,'Solomillo de cerdo',12),(10,'Entrecot de ternera',15),(11,'Pechuga de pollo',10),(12,'Pollo frito con ajos',12),(13,'Ensalada normal',7),(14,'Ensaladilla rusa',8),(15,'Merluza a la plancha',15),(16,'Salmon a la plancha',14),(17,'Canelones',10),(18,'Migas con jamon',9),(19,'Sopa de ajo',6),(20,'Gambas a la plancha',15),(21,'Huevos rotos',12),(22,'Esparragos',13),(23,'Croquetas',9),(24,'Morcilla con patatas',10),(25,'Cafe',1),(26,'Natillas',2),(27,'Tarta de chocolate',2),(28,'Flan',3),(29,'Coulant de chocolate',4),(30,'Crema catalana',4);";
+			String orden1 = "CREATE TABLE IF NOT EXISTS menu(id int primary key,nombre varchar(25),precio int);";
+			String orden2 = "INSERT INTO menu VALUES (1,'Agua',1),(2,'CocaCola',2),(3,'Fanta',2),(4,'Cerveza',3),(5,'Vino',4),(6,'Paella',20),(7,'Arroz con bogavante',18),(8,'Chuletas de cordero',14),(9,'Solomillo de cerdo',12),(10,'Entrecot de ternera',15),(11,'Pechuga de pollo',10),(12,'Pollo frito con ajos',12),(13,'Ensalada normal',7),(14,'Ensaladilla rusa',8),(15,'Merluza a la plancha',15),(16,'Salmon a la plancha',14),(17,'Canelones',10),(18,'Migas con jamon',9),(19,'Sopa de ajo',6),(20,'Gambas a la plancha',15),(21,'Huevos rotos',12),(22,'Esparragos',13),(23,'Croquetas',9),(24,'Morcilla con patatas',10),(25,'Cafe',1),(26,'Natillas',2),(27,'Tarta de chocolate',2),(28,'Flan',3),(29,'Coulant de chocolate',4),(30,'Crema catalana',4);";
 
 			PreparedStatement sentencia = c.prepareStatement(orden1);
 			sentencia.execute(orden1);
 			sentencia = c.prepareStatement(orden2);
 			sentencia.execute(orden2);
-			sentencia = c.prepareStatement(orden3);
-			sentencia.execute(orden3);
 
 			sentencia.close();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -138,18 +136,19 @@ public class Database {
 
 	}
 
-	public void visualizar(Connection c) {
+	public static void visualizarMenu(Connection c) {
 
 		try {
 
-			String orden_SQL = "SELECT * FROM alumnos;";
+			String orden_SQL = "SELECT * FROM menu;";
 			Statement sentencia = c.createStatement();
 			ResultSet rs = sentencia.executeQuery(orden_SQL);
 
 			while (rs.next()) {
 				System.out.println();
-				System.out.println("1.Nombre: " + rs.getString(1));
-				System.out.println("2.Nota: " + rs.getInt(2));
+				System.out.println("ID: " + rs.getInt(1));
+				System.out.println("Nombre: " + rs.getString(2));
+				System.out.println("Precio: " + rs.getInt(3));
 			}
 
 			sentencia.close();
@@ -160,57 +159,34 @@ public class Database {
 
 	}
 
+	public static void deleteAll(Connection c) {
+
+		try {
+			String orden1 = "DELETE mesa_plato.* FROM mesa_plato;";
+			String orden2 = "DELETE menu.* FROM menu;";
+			PreparedStatement sentencia = c.prepareStatement(orden1);
+			sentencia.executeUpdate();
+			sentencia = c.prepareStatement(orden2);
+			sentencia.executeUpdate();
+
+			sentencia.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void delete(Connection c) {
 
-		System.out.println("Que nombre quieres eliminar?:");
-		String nombre = scan.next();
-		boolean encontrado = false;
-
 		try {
-
-			String orden_SQL = "SELECT * FROM alumnos;";
-			Statement sentencia = c.createStatement();
-			ResultSet rs = sentencia.executeQuery(orden_SQL);
-
-			while (rs.next()) {
-				if (rs.getString("nombre").equalsIgnoreCase(nombre)) {
-					encontrado = true;
-				}
-			}
+			String orden_SQL = "DELETE FROM ALUMNOS WHERE nombre=?;";
+			PreparedStatement sentencia = c.prepareStatement(orden_SQL);
+			sentencia.setString(1,"");
+			sentencia.executeUpdate();
 
 			sentencia.close();
-
+			System.out.println("El alumno se ha eliminado");
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-
-		if (encontrado) {
-			try {
-				String orden_SQL = "DELETE FROM ALUMNOS WHERE nombre=?;";
-				PreparedStatement sentencia = c.prepareStatement(orden_SQL);
-				sentencia.setString(1, nombre);
-				sentencia.executeUpdate();
-
-				sentencia.close();
-				System.out.println("El alumno " + nombre + " se ha eliminado");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		} else {
-			System.out.println("No se han encontrado coincidencias");
-		}
-
-	}
-
-	public static void cerrar_conexion(Connection conexion) {
-		try {
-			if (conexion != null) {
-				if (!conexion.isClosed()) {
-					conexion.close();
-				}
-			}
-		} catch (SQLException e) {
-			System.out.println("No se ha podido cerrar la conexion");
 		}
 	}
 
@@ -268,6 +244,32 @@ public class Database {
 		}
 
 		return precioPlato;
+
+	}
+
+	public static void consultaMesa() {
+
+	}
+
+	public static void platoMesa(Connection c) {
+		
+		
+
+	}
+
+	public static void cerrar_conexion(Connection conexion) {
+		try {
+			if (conexion != null) {
+				if (!conexion.isClosed()) {
+					conexion.close();
+				}
+			}
+		} catch (SQLException e) {
+			System.out.println("No se ha podido cerrar la conexion");
+		}
+	}
+
+	public static void consultaBebida(Connection c) {
 
 	}
 

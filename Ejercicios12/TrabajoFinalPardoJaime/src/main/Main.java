@@ -35,6 +35,7 @@ public class Main {
 			mesas.add(mesa);
 		}
 		
+		menu.crearDatabase();
 		menu.menuPrincipal(mesas);
 
 		scan.close();
