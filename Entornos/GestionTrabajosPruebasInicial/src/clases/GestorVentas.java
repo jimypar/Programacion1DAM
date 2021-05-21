@@ -89,35 +89,7 @@ public class GestorVentas {
 		}
 	}
 
-	public void asignarResponsableExperto(String nombreVenta) {
-
-		Venta venta = buscarVenta(nombreVenta);
-		if (venta != null) {
-			venta.setCliente(buscarResponsableExperto());
-		}
-	}
-
-	public Cliente buscarResponsableExperto() {
-
-		LocalDate fechaAntigua = null;
-		for (int i = 0; i < listaClientes.size(); i++) {
-			Cliente responsableActual = listaClientes.get(i);
-			if (responsableActual != null && i == 0) {
-				fechaAntigua = responsableActual.getFechaCompra();
-			} else {
-				if (responsableActual != null && responsableActual.getFechaCompra().isAfter(fechaAntigua)) {
-					fechaAntigua = responsableActual.getFechaCompra();
-				}
-			}
-		}
-
-		for (Cliente jefe : listaClientes) {
-			if (jefe != null && jefe.getFechaCompra().equals(fechaAntigua)) {
-				return jefe;
-			}
-		}
-		return null;
-	}
+	
 
 	public Venta buscarVenta(String nombreVenta) {
 		for (Venta venta : listaVentas) {
@@ -140,23 +112,6 @@ public class GestorVentas {
 		for (Venta venta : listaVentas) {
 			if (venta.getCliente() != null && venta.getCliente().getDni().equals(dni)) {
 				System.out.println(venta);
-			}
-		}
-	}
-
-	public void ere() {
-		Iterator<Cliente> iteradorClientes = listaClientes.iterator();
-
-		while (iteradorClientes.hasNext()) {
-			Cliente cliente = iteradorClientes.next();
-			boolean estaEnVenta = false;
-			for (Venta venta : listaVentas) {
-				if (venta.getCliente() != null && venta.getCliente().getDni().equals(cliente.getDni())) {
-					estaEnVenta = true;
-				}
-			}
-			if (!estaEnVenta) {
-				iteradorClientes.remove();
 			}
 		}
 	}

@@ -33,7 +33,6 @@ public class Programa {
 		//10
 		gestor.listarVentasDeCliente("12345");
 		//11
-		gestor.ere();
 		gestor.listarCliente();
 		
 	}
