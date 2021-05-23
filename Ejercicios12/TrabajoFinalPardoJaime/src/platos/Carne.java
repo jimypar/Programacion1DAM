@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 import objetos.Plato;
 
+/**
+ * Clase Carne
+ * 
+ * @author Jaime
+ * @version
+ * @since 1.8
+ */
 public class Carne extends Plato {
 
 	private Cocciones coccion;
@@ -13,7 +20,7 @@ public class Carne extends Plato {
 		super(numPlato);
 		this.coccion = Cocciones.PUNTO;
 	}
-	
+
 	public Carne() {
 		super();
 		this.coccion = Cocciones.PUNTO;
@@ -23,6 +30,9 @@ public class Carne extends Plato {
 		return coccion;
 	}
 
+	/**
+	 * Rellenar los atributos de la clase.
+	 */
 	public void rellenar() {
 
 		super.rellenar();
@@ -41,6 +51,9 @@ public class Carne extends Plato {
 
 	}
 
+	/**
+	 * Visualiza los atributos de la clase.
+	 */
 	public void visualizar() {
 
 		super.visualizar();
@@ -48,6 +61,17 @@ public class Carne extends Plato {
 
 	}
 
+	@Override
+	public String toString() {
+
+		return super.toString() + "\n   -" + this.coccion;
+	}
+
+	/**
+	 * Calula los precios añadiendo el 10% de IVA.
+	 * 
+	 * @return precio Precio con el IVA añadido
+	 */
 	@Override
 	public double calcularPrecio() {
 

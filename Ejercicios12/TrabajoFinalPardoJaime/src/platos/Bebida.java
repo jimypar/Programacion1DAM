@@ -4,25 +4,43 @@ import java.util.Scanner;
 
 import objetos.Plato;
 
+/**
+ * Clase Bebida
+ * 
+ * @author Jaime
+ * @version
+ * @since 1.8
+ */
 public class Bebida extends Plato {
 
 	private Sizes size;
 	private Scanner scan = new Scanner(System.in);
 
+	/**
+	 * Inicializa los atributos de la clase
+	 * 
+	 * @param numPlato Numero del plato
+	 */
 	public Bebida(int numPlato) {
 		super(numPlato);
 		this.size = Sizes.MEDIANO;
 	}
 
+	/**
+	 * Inicializa los atributos de la clase vacios
+	 */
 	public Bebida() {
 		super();
 		this.size = Sizes.MEDIANO;
 	}
-	
+
 	public Sizes getSize() {
 		return size;
 	}
 
+	/**
+	 * Rellenar los atributos de la clase.
+	 */
 	public void rellenar() {
 
 		super.rellenar();
@@ -41,6 +59,9 @@ public class Bebida extends Plato {
 
 	}
 
+	/**
+	 * Visualiza los atributos de la clase.
+	 */
 	public void visualizar() {
 
 		super.visualizar();
@@ -49,16 +70,20 @@ public class Bebida extends Plato {
 	}
 
 	@Override
+	public String toString() {
+		return super.toString() + "\n   -" + this.size;
+	}
+
+	/**
+	 * Calcular el precio segun el tamaño de la bebida
+	 * 
+	 * @return precio Precio calculado
+	 */
+	@Override
 	public double calcularPrecio() {
 
-		double precio = super.getPrecio();
+		double precio = super.getPrecio() + this.size.getAdd();
 
-		if (this.size.equals(Sizes.GRANDE)) {
-			precio += 0.5;
-		}
-		if (this.size.equals(Sizes.PEQUEÑO)) {
-			precio -= 0.5;
-		}
 		return precio;
 	}
 

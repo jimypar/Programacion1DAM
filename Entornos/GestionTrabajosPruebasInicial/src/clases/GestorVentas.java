@@ -58,11 +58,25 @@ public class GestorVentas {
 		return false;
 	}
 
-	public void altaVenta(String nombre, String cliente, Double presupuesto, String fechaventa, String electrodomestico) {
+	public boolean existeVenta(String nombreVenta) {
+		for (Venta venta : listaVentas) {
+			if (venta != null && venta.getNombre().equals(nombreVenta)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-		Venta nuevaVenta = new Venta(nombre, cliente, presupuesto, electrodomestico);
-		nuevaVenta.setFechaVenta(LocalDate.parse(fechaventa));
-		listaVentas.add(nuevaVenta);
+	public void altaVenta(String nombre, String cliente, Double presupuesto, String fechaventa,
+			String electrodomestico) {
+
+		if (!existeVenta(nombre)) {
+			Venta nuevaVenta = new Venta(nombre, cliente, presupuesto, electrodomestico);
+			nuevaVenta.setFechaVenta(LocalDate.parse(fechaventa));
+			listaVentas.add(nuevaVenta);
+		} else {
+			System.out.println("La venta ya existe");
+		}
 
 	}
 
@@ -88,8 +102,6 @@ public class GestorVentas {
 			venta.setCliente(cliente);
 		}
 	}
-
-	
 
 	public Venta buscarVenta(String nombreVenta) {
 		for (Venta venta : listaVentas) {

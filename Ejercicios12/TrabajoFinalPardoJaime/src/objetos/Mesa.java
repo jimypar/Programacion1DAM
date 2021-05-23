@@ -27,11 +27,7 @@ public class Mesa {
 	private Scanner scan = new Scanner(System.in);
 
 	/**
-	 * Inicializa los atributos de la clase
-	 * 
-	 * @param numeroMesa Numero identificativo de la mesa
-	 * @param precioMesa Precio total de los platos de la mesa
-	 * @param platos     ArrayList de los platos de la mesa
+	 * Inicializa los atributos de la clase vacios
 	 */
 	public Mesa() {
 		this.numeroMesa = 0;
@@ -72,10 +68,8 @@ public class Mesa {
 	 * El metodo permite añadir un elemento al array buscando un numero en el
 	 * archivo carta y introduciendo esos parametros al plato nuevo
 	 * 
-	 * @param c
+	 * @param c Conexion con la base de datos.
 	 * 
-	 * @param Archivo carta es el archivo txt que se lee para sacar los platos y sus
-	 *                precios
 	 */
 	public void añadirPlato(Connection c) {
 		int numPlato = -1;
@@ -148,8 +142,7 @@ public class Mesa {
 
 	/**
 	 * Comprueba si el plato esta entregado y si no lo esta lo entrega
-	 * 
-	 * 
+	 *
 	 */
 	public void entregarPlato() {
 		int numPlato = -1;
@@ -184,7 +177,7 @@ public class Mesa {
 	}
 
 	/**
-	 * Metodo que permite eliminar un plato y sus datos del ArrayList
+	 * Metodo que permite eliminar un plato y sus datos del ArrayList y de la base de datos
 	 * 
 	 */
 	public void eliminarPlato(Connection c) {
@@ -205,11 +198,16 @@ public class Mesa {
 		if (numPlato > 0 && numPlato <= platos.size()) {
 			this.precioMesa -= platos.get(numPlato - 1).calcularPrecio();
 			platos.remove(numPlato - 1);
-			Database.deleteData(c, this.numeroMesa, numPlato);
+			Database.deleteData(c, this.numeroMesa, platos.get(numPlato - 1).getNumeroPlato());
 		}
 
 	}
-
+	/**
+	 * El metodo busca un plato en la mesa y te permite remplazar por otro que lo
+	 * busca en la carta y lo sustituye.
+	 * 
+	 *	@param c Conexion con la base de datos.
+	 */
 	public void remplazarPlato(Connection c) {
 
 		int numPlato = 0;
@@ -300,11 +298,7 @@ public class Mesa {
 	 * Compreba si todos los platos estan entregados y si es asi hace la suma de sus
 	 * precios
 	 * 
-	 * @param numeroMesa Numero identificativo de la mesa
-	 * @param precioMesa Precio total de los platos de la mesa
-	 * @param platos     ArrayList de los platos de la mesa
-	 * 
-	 * @return int precio de todos los platos de la mesa
+	 * @return double precio de todos los platos de la mesa.
 	 */
 	public double cuenta() {
 		boolean continuar = true;
@@ -335,9 +329,9 @@ public class Mesa {
 	}
 
 	/**
-	 * Metodo que vacia el ArrayList de platos entero
+	 * Metodo que vacia el ArrayList de platos entero y la base de la mesa.
 	 * 
-	 * @param c
+	 * @param c Concexion con la base de datos.
 	 * 
 	 */
 	public void vaciar(Connection c) {
@@ -349,7 +343,7 @@ public class Mesa {
 	}
 
 	/**
-	 * Ordenar el ArrayList de platos segun el numero que ocupan en la carta
+	 * Ordenar el ArrayList de platos segun el numero que ocupan en la carta.
 	 * 
 	 */
 	public void ordenarPlatos() {

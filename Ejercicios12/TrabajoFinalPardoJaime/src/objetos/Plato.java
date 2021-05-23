@@ -84,6 +84,10 @@ public abstract class Plato implements Plato_interface, Comparable<Plato> {
 	public void rellenar() {		
 	}
 	
+	/**
+	 * Visualiza los datos del plato
+	 * 
+	 */
 	public void visualizar() {
 		
 		System.out.println("Plato: "+this.nombrePlato);
@@ -110,6 +114,12 @@ public abstract class Plato implements Plato_interface, Comparable<Plato> {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * Metodo comparable que ordena platos segun su numero en el menu.
+	 * 
+	 */
 	@Override
 	public int compareTo(Plato plato) {
 		

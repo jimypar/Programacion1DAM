@@ -8,19 +8,33 @@ import java.util.Scanner;
 import objetos.Database;
 import objetos.Mesa;
 
+/**
+ * Clase Menu
+ * 
+ * @author Jaime
+ * @version
+ * @since 1.8
+ */
 public class Menu {
 
 	private Scanner scan = new Scanner(System.in);
 	private Properties p = Database.usarBase();
 	private Connection c = Database.crearConexion(p);
 
+	
+	/**
+	 * Borra la base si existiese y crea las tablas necesarias.
+	 */
 	public void crearDatabase() {
 
-		Database.deleteAll(c);
+		Database.deleteTable(c);
 		Database.createTable(c);
 
 	}
 
+	/**
+	 * Menu principal del programa
+	 */
 	public void menuPrincipal(ArrayList<Mesa> mesas) {
 
 		do {
@@ -57,7 +71,6 @@ public class Menu {
 				menuBase(mesas);
 				break;
 			case 5:
-				Database.deleteAll(c);
 				Database.cerrar_conexion(c);
 				System.exit(0);
 			}
@@ -65,12 +78,22 @@ public class Menu {
 
 	}
 
+	/**
+	 * Añade una mesa al ArrayList.
+	 * 
+	 * @param mesas ArrayList de mesas del restaurante
+	 */
 	private void añadirMesa(ArrayList<Mesa> mesas) {
 
 		mesas.add(new Mesa(mesas.size() + 1));
 		System.out.println("Se ha añadido la mesa " + mesas.size());
 	}
 
+	/**
+	 * Visualiza cada mesa con sus platos.
+	 * 
+	 * @param mesas ArrayList de mesas del restaurante
+	 */
 	private void visualizar(ArrayList<Mesa> mesas) {
 
 		for (Mesa mesa : mesas) {
@@ -80,6 +103,12 @@ public class Menu {
 
 	}
 
+	/**
+	 * 
+	 * Menu para operar con una mesa.
+	 * 
+	 * @param mesas ArrayList de mesas del restaurante
+	 */
 	public void menuMesa(ArrayList<Mesa> mesas) {
 
 		int numMesa = -1;
@@ -168,6 +197,12 @@ public class Menu {
 
 	}
 
+	/**
+	 * 
+	 * Menu para realizar consultas en la base de datos.
+	 * 
+	 * @param mesas ArrayList de mesas del restaurante.
+	 */
 	private void menuBase(ArrayList<Mesa> mesas) {
 
 		do {

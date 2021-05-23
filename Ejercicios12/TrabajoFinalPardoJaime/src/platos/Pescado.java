@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 import objetos.Plato;
 
+/**
+ * Clase Pescado
+ * 
+ * @author Jaime
+ * @version
+ * @since 1.8
+ */
 public class Pescado extends Plato {
 
 	private Acompanamientos acompanamiento;
@@ -23,6 +30,9 @@ public class Pescado extends Plato {
 		return acompanamiento;
 	}
 
+	/**
+	 * Rellenar los atributos de la clase.
+	 */
 	public void rellenar() {
 
 		super.rellenar();
@@ -41,6 +51,9 @@ public class Pescado extends Plato {
 
 	}
 
+	/**
+	 * Visualiza los atributos de la clase.
+	 */
 	public void visualizar() {
 
 		super.visualizar();
@@ -48,6 +61,17 @@ public class Pescado extends Plato {
 
 	}
 
+	@Override
+	public String toString() {
+
+		return super.toString() + "\n   -" + this.acompanamiento;
+	}
+
+	/**
+	 * Calcula el precio segun el acompañamiento que se elige
+	 * 
+	 * @return precio Precio del plato calculado
+	 */
 	@Override
 	public double calcularPrecio() {
 

@@ -4,6 +4,13 @@ import java.util.Scanner;
 
 import objetos.Plato;
 
+/**
+ * Clase Postre
+ * 
+ * @author Jaime
+ * @version
+ * @since 1.8
+ */
 public class Postre extends Plato {
 
 	private boolean azucar;
@@ -13,14 +20,15 @@ public class Postre extends Plato {
 		super(numPlato);
 		this.azucar = true;
 	}
-	
+
 	public Postre() {
 		super();
 		this.azucar = true;
 	}
-	
-	
 
+	/**
+	 * Rellenar los atributos de la clase.
+	 */
 	public void rellenar() {
 
 		super.rellenar();
@@ -39,13 +47,27 @@ public class Postre extends Plato {
 
 	}
 
+	/**
+	 * Visualiza los atributos de la clase.
+	 */
 	public void visualizar() {
 
 		super.visualizar();
 		System.out.println(tieneAzucar());
 
 	}
+	
+	@Override
+	public String toString() {
+		
+		return super.toString()+"\n   -" + tieneAzucar();
+	}
 
+	/**
+	 * Devuelve un string segun el booleano azucar del plato.
+	 * 
+	 * @return String con azucar o sin azucar.
+	 */
 	public String tieneAzucar() {
 		if (this.azucar) {
 			return "Con Azucar";
@@ -55,6 +77,11 @@ public class Postre extends Plato {
 
 	}
 
+	/**
+	 * Añade al precio 10 centimos si elige azucar.
+	 * 
+	 * @return precio Precio final.
+	 */
 	@Override
 	public double calcularPrecio() {
 
